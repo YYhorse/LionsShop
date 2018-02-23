@@ -1,0 +1,52 @@
+{
+  "pages":[
+    "pages/FriendActivity/friend",
+    "pages/FriendDetailActivity/frienddetail",
+    "pages/HelpActivity/help",
+    "pages/MainActivity/main",
+    "pages/MyActivity/my"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#E51C23",
+    "navigationBarTitleText": "狮友圈",
+    "navigationBarTextStyle":"white",
+    "enablePullDownRefresh":true
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#E51C23",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "images/home_on.png",
+        "iconPath": "images/home_off.png",
+        "pagePath": "pages/MainActivity/main",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/help_on.png",
+        "iconPath": "images/help_off.png",
+        "pagePath": "pages/HelpActivity/help",
+        "text": "狮友帮"
+      },
+      {
+        "selectedIconPath": "images/friend_on.png",
+        "iconPath": "images/friend_off.png",
+        "pagePath": "pages/FriendActivity/friend",
+        "text": "狮友圈"
+      },
+      {
+        "selectedIconPath": "images/my_on.png",
+        "iconPath": "images/my_off.png",
+        "pagePath": "pages/MyActivity/my",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+     "request": 10000,
+     "downloadFile": 10000
+  },
+  "debug": true
+}

@@ -1,0 +1,63 @@
+.ScrollLayout{
+  display: flex;
+  position:fixed;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  top: 0rpx;
+}
+.swiper {
+  height: 400rpx;
+  width: 100%;
+  display: flex;
+}
+.swiper image {
+  height: 100%;
+  width: 100%;
+}
+.AdLayoutImage{
+  display: flex;
+  width: 100%;
+  height: 300rpx;
+}
+/**类别信息**/
+.CategoryLayout{
+  display: flex;
+  width: 100%;
+  height: 300rpx;
+  flex-direction: column;
+}
+.CategorySingerLayout{
+  display: flex;
+  width: 100%;
+  height: 150rpx;
+  flex-direction: row;
+  align-items: center;
+}
+.CategoryItemLayout{
+  display: flex;
+  width: 20%;
+  flex-direction: column;
+  align-items: center;
+}
+.CategoryItemImage{
+  width: 70rpx;
+  height: 70rpx;
+}
+.CategoryItemText{
+  font-size: 25rpx;
+  color: black;
+  margin-top: 5rpx;
+}
+/** 底部推荐信息 **/
+.BottomRectLayout{
+  width: 100%;
+  height: 60rpx;
+  background-color: #F5F5F5;
+  align-items: center;
+}
+.GroomActivityText{
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  font-weight:bold;
+}

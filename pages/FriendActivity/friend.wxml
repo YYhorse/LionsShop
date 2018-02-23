@@ -1,0 +1,25 @@
+<block wx:for="{{friendList}}" wx:key="time">
+  <!--顶部标题和状态-->
+  <view class='TopLayout'>
+    <text class='TitleText'>{{item.title}}</text>
+    <image class='ActivityStatue' src="{{item.activity_status==true?'/images/进行中.png':'/images/已结束.png'}}"></image>
+  </view>
+  <!--中部图片-->
+  <image class='MiddleLayout' src="{{item.url}}" data-numid="{{index}}" bindtap="点击指定活动"></image>
+  <!--底部信息-->
+  <view class='BottomLayout'>
+    <view class='ItemLayout'>
+      <image class='BottomItemImage' src='/images/人.png'></image>
+      <text class='BottomItemText'>{{item.contact_name}}</text>
+    </view>
+    <view class='ItemLayout'>
+      <image class='BottomItemImage' src='/images/位置.png'></image>
+      <text class='BottomItemText'>{{item.place}}</text>
+    </view>
+    <view class='ItemLayout'>
+      <image class='BottomItemImage' src='/images/时间.png'></image>
+      <text class='BottomItemText'>{{item.time}}</text>
+    </view>
+  </view>
+  <view class='BottomLine'></view>
+</block>

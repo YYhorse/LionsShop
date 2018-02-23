@@ -1,0 +1,54 @@
+.TopLayout{
+  display: flex;
+  width: 100%;
+  height: 80rpx;
+  flex-direction: row;
+}
+.TitleText{
+  font-size: 30rpx;
+  color: black;
+  width: 90%;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+}
+.ActivityStatue{
+  width: 10%;
+  height: 70rpx;
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+}
+.MiddleLayout{
+  width: 98%;
+  height: 400rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  border-radius: 20rpx;    
+}
+.BottomLayout{
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ItemLayout{
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 20rpx;
+}
+.BottomItemImage{
+  width:  40rpx;
+  height: 40rpx;
+}
+.BottomItemText{
+  font-size: 25rpx;
+  color: #d3d3d3;
+  margin-left: 5rpx;
+}
+.BottomLine{
+  width: 100%;
+  height: 1rpx;
+  background-color: #d3d3d3;
+}

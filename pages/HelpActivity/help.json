@@ -1,0 +1,85 @@
+{
+  "消费类": [
+    {
+      "全球购": [
+        {
+          "ServiceName": "瑞士雷达表",
+          "ServicePlace": "大连市沙河口区黄河路110号",
+          "ServiceDetail": "本店专营瑞士精品雷达表系列产品欢迎采购",
+          "ContactName": "刘先生",
+          "ContactTel": "18698711581",
+          "PicInfo": [
+            {
+              "url": "http://img02.tooopen.com/images/20141231/sy_78327074576.jpg"
+            },
+            {
+              "url": "http://img02.tooopen.com/images/20141231/sy_78327074576.jpg"
+            }
+          ]
+        },
+        {
+          "ServiceName": "测试服务",
+          "ServicePlace": "地址",
+          "ServiceDetail": "描述",
+          "ContactName": "联系人",
+          "ContactTel": "电话",
+          "PicInfo": [
+            {
+              "url": "http://img02.tooopen.com/images/20141231/sy_78327074576.jpg"
+            }
+          ]
+        }
+      ],
+      "服饰": [
+        {
+          "ServiceName": "测试服务",
+          "ServicePlace": "地址",
+          "ServiceDetail": "描述",
+          "ContactName": "联系人",
+          "ContactTel": "电话",
+          "PicInfo": [
+            {
+              "url": "http://img02.tooopen.com/images/20141231/sy_78327074576.jpg"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "业务类": [
+    {
+      "测试业务类": [
+        {
+          "ServiceName": "测试服务",
+          "ServicePlace": "地址",
+          "ServiceDetail": "描述",
+          "ContactName": "联系人",
+          "ContactTel": "电话",
+          "PicInfo": [
+            {
+              "url": "http://img02.tooopen.com/images/20141231/sy_78327074576.jpg"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "其他类": [
+    {
+      "测试其他类": [
+        {
+          "ServiceName": "测试服务",
+          "ServicePlace": "地址",
+          "ServiceDetail": "描述",
+          "ContactName": "联系人",
+          "ContactTel": "电话",
+          "PicInfo": [
+            {
+              "url": "http://img02.tooopen.com/images/20141231/sy_78327074576.jpg"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
