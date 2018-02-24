@@ -27,6 +27,6 @@ Page({
     let activityJson = JSON.stringify(this.data.friendList[Index]);
     console.log('点击事件'+Index);
     console.log(activityJson); 
-    // wx.navigateTo({ url: '/pages/FriendDetailActivity/frienddetail?activityJson=' + activityJson })
+    wx.navigateTo({ url: '/pages/FriendDetailActivity/frienddetail?activityJson=' + activityJson })
   }
 })

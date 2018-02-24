@@ -1,10 +1,12 @@
 {
   "pages":[
+   
+    "pages/MainActivity/main",
+    "pages/MyWorkActivity/mywork",
+    "pages/MyActivity/my",
     "pages/FriendActivity/friend",
     "pages/FriendDetailActivity/frienddetail",
-    "pages/HelpActivity/help",
-    "pages/MainActivity/main",
-    "pages/MyActivity/my"
+    "pages/HelpActivity/help"
   ],
   "window":{
     "backgroundTextStyle":"light",

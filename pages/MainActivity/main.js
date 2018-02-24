@@ -15,5 +15,5 @@ AdUrl:'https://m.360buyimg.com/mobilecms/jfs/t16072/18/2051412761/188193/849f56a
   },
   点击奢侈品:function(e){
     wx.showLoading({ title: '奢侈品' })
-  },
+  }
 })

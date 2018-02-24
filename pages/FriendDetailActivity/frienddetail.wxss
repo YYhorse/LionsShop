@@ -1,0 +1,71 @@
+.TopImage{
+  width: 100%;
+  display: flex;
+}
+.SingerLayout{
+  display: flex;
+  width: 100%;
+  height: 80rpx;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #ededed;
+}
+.ActivityStatusImage{
+  width:  80rpx;
+  height: 80rpx;
+}
+.ActivityTitleText{
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+  margin-left: 10rpx;
+}
+.LogoImage{
+  width:  40rpx;
+  height: 40rpx;
+  margin-left: 20rpx;
+}
+.LogoTitleText{
+  font-size: 16px;
+  color: black;
+  margin-left: 20rpx;
+  font-weight: bold;
+}
+.LogoContextText{
+  font-size: 16px;
+  color: gray;
+  margin-left: 20rpx;
+}
+.CallMe{
+  margin-left: 200rpx;
+  margin-right: 10rpx;  
+  width: 20%;  
+  line-height: 60rpx;  
+  text-align: center;
+  background-color: #098E1B;
+  border: 1px solid #ededed;  
+  border-radius: 20rpx; 
+}
+.CallMeText{
+  font-size: 16px;
+  color: white;
+}
+.DetailLayout{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  background-color: #F0F0F0;
+}
+.DetailTitle{
+  font-size: 13px;
+  color: black;
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+  font-weight: bold;
+}
+.DetailContext{
+  font-size: 13px;
+  color: gray;
+  margin-left: 50rpx;
+}

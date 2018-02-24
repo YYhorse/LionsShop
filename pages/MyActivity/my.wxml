@@ -1,0 +1,20 @@
+<!--顶部个人信息展示-->
+<view class='UserInfoLayout'>
+  <image class='AvatarImage' src="{{AvatarUrl}}" background-size="cover" mode="aspectFill"></image>
+  <text class='NiceNameText'>{{NiceName}}</text>
+</view>
+<view class='LineLayout'></view>
+<!--平台管理-->
+<view class='SingerLayout' bindtap='点击管理'>
+  <text class='SingerText'>{{MyBusiness}}</text>
+  <view class='SingerEndLayout'>
+    <image class='SingerRightImage' src='/images/向右.png'></image>
+  </view>
+</view>
+<!--关于我们-->
+<view class='SingerLayout'>
+  <text class='SingerText'>关于我们</text>
+  <view class='SingerEndLayout'>
+    <image class='SingerRightImage' src='/images/向右.png'></image>
+  </view>
+</view>

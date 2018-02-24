@@ -1,0 +1,34 @@
+.HideView{
+  display: none;
+}
+.ApplyInfoLayout{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+.SingerLineLayout {  
+  display: flex;
+  width: 80%;
+  height: 50rpx;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 0;
+  border: 1px solid #ededed;
+  margin-top: 30rpx;
+}  
+.SingerLineImage{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 10rpx;
+}
+.SingerLineText{
+  font-size: 20px;
+  color: gray;
+  margin-left: 20rpx;
+}
+.AppleBtn{
+  width: 80%;
+  margin-top: 100rpx;  
+}
