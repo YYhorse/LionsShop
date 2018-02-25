@@ -12,6 +12,15 @@ AdUrl:'https://m.360buyimg.com/mobilecms/jfs/t16072/18/2051412761/188193/849f56a
   },
   onLoad:function(options){
     wx.setNavigationBarTitle({ title: '首页' });
+    wx.request({
+      url: 'https://lionsshop.cn/api/v1/users/home_page',
+      data: {},
+      method: 'GET',
+      success: function (Ares) {
+        console.log(Ares.data);
+      },
+      fail: function () { wx.showToast({ title: '登陆失败,服务器异常', }) }
+    })
   },
   点击奢侈品:function(e){
     wx.showLoading({ title: '奢侈品' })

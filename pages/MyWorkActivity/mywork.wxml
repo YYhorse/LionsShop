@@ -1,4 +1,4 @@
-<view class="{{VipStatus==true?'HideView':'ApplyInfoLayout'}}">
+<view class="{{VipStatus=='vip'?'HideView':'ApplyInfoLayout'}}">
   <!--输入真实姓名-->
   <view class="SingerLineLayout">
     <image class='SingerLineImage' src='/images/人.png'></image> 
@@ -8,11 +8,11 @@
   <view class="SingerLineLayout">
     <image class='SingerLineImage' src='/images/电话.png'></image> 
     <input class="SingerLineText" placeholder="请输入手机号" placeholder-style="color:#DADADA" bindinput="输入手机号"/>  
-  </view> 
+  </view>  
   <!--信息备注-->
   <view class="SingerLineLayout">
     <image class='SingerLineImage' src='/images/备注.png'></image> 
-    <input class="SingerLineText" placeholder="填写备注信息" placeholder-style="color:#DADADA" binginput="输入备注"/>  
+    <input class="SingerLineText" placeholder="请输入备注" placeholder-style="color:#DADADA" bindinput="输入备注"/>  
   </view> 
   <!--信息提交-->
   <button class='AppleBtn' type="warn" bindtap='点击提交信息'>提交信息</button>

@@ -1,5 +1,4 @@
 var app = getApp() // 获取入口文件app的应用实例
-var temptest = { "avatarUrl": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLTI0d5Vsze6Yib5NWPUHJyTjX4D3N2BGrA6XMh8zFTGXECAGzTpRDia3ib2uPhJXYYvjYOTkIeaoGWw/0", "city": "Dalian", "country": "China", "gender": 1, "language": "zh_CN", "nickName": "奥创", "province": "Liaoning" };
 Page({
   data: {
     AvatarUrl: "",
@@ -8,11 +7,11 @@ Page({
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({ title: '我的' });
-    //console.log("------" + app.globalData.code);
+    var ShowStatus = this.GetUserStatusInfo();
     this.setData({
-      AvatarUrl: temptest.avatarUrl,//app.globalData.userInfo.avatarUrl,
-      NiceName: temptest.nickName,
-      MyBusiness: app.globalData.vipStatus == true?'业务管理':'申请成为狮友',
+      AvatarUrl: app.globalData.userInfo.avatarUrl,
+      NiceName: app.globalData.userInfo.nickName,
+      MyBusiness: ShowStatus,
     })
   },
   点击管理:function(e){
@@ -22,7 +21,25 @@ Page({
     }
     else if (this.data.MyBusiness == "业务管理"){
       console.log("业务管理");
-
     }
+    else
+      app.GetUserInfo(); //待审核刷新
+  },
+  GetUserStatusInfo:function(){
+    var ShowStatus = '';
+    if (app.globalData.vipStatus == 'tourist')
+      ShowStatus = '申请成为狮友';
+    else if (app.globalData.vipStatus == 'vip')
+      ShowStatus = '业务管理';
+    else
+      ShowStatus = '信息审核中';  
+    return ShowStatus;
+  },
+  onShow:function(){
+    console.log("状态=" + app.globalData.vipStatus);
+    var ShowStatus = this.GetUserStatusInfo();
+    this.setData({
+      MyBusiness: ShowStatus,
+    })
   }
 })
