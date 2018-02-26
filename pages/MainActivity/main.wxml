@@ -2,9 +2,9 @@
 <scroll-view class="ScrollLayout" scroll-y="true" scroll-top="0">
   <!--顶部轮播展示图-->
   <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">    
-      <block wx:for="{{movies}}" wx:for-index="index">    
+      <block wx:for="{{DynamicAdUrl}}" wx:for-index="index">    
         <swiper-item>    
-          <image src="{{item.url}}" class="slide-image" mode="aspectFill"/>    
+          <image src="{{item.image_url}}" class="slide-image" mode="aspectFill"/>    
         </swiper-item>    
       </block>    
     </swiper> 
@@ -58,7 +58,7 @@
     </view>
   </view>
   <!-- 中下固定广告页-->
-   <image class='AdLayoutImage' src='{{AdUrl}}'></image>
+   <image class='AdLayoutImage' src='{{StaticAdUrl}}'></image>
   <!-- 底部推荐信息-->
   <view class='BottomRectLayout'><text class='GroomActivityText'>推荐活动</text></view>
 </scroll-view>   

@@ -1,7 +1,7 @@
 <view class="SearchLayout" >
   <view class="search_arr">
     <icon class="searchcion" size='20' color='#ffffff' type='search'></icon>  
-    <input class="" placeholder="请输入关键字" value="{{searchValue}}"/>  
+    <input class="" placeholder="  请输入关键字" placeholder-style="color:#DADADA"  value="{{searchValue}}"/>  
     </view>  
   <view class='sousuo'><text class='searchText'>搜索</text></view>
 </view>
@@ -9,21 +9,64 @@
 <view class='BigCategoryLayout'> 
    <!--单独一格-->
     <view class='CategorySingerLayout' bindtap='点击消费类'> 
-     <text class="{{SelectCategory==0?'CategoryItemTextLight':'CategoryItemTextDark'}}">消费类</text>
-     <view class="{{SelectCategory==0?'CategoryItemSelectLight':'CategoryItemSelectDark'}}"></view>
+     <text class="{{SelectCategory=='消费类'?'CategoryItemTextLight':'CategoryItemTextDark'}}">消费类</text>
+     <view class="{{SelectCategory=='消费类'?'CategoryItemSelectLight':'CategoryItemSelectDark'}}"></view>
     </view>
 
     <view class='CategorySingerLayout' bindtap='点击业务类'> 
-     <text class="{{SelectCategory==1?'CategoryItemTextLight':'CategoryItemTextDark'}}">业务类</text>
-     <view class="{{SelectCategory==1?'CategoryItemSelectLight':'CategoryItemSelectDark'}}"></view>
+     <text class="{{SelectCategory=='业务类'?'CategoryItemTextLight':'CategoryItemTextDark'}}">业务类</text>
+     <view class="{{SelectCategory=='业务类'?'CategoryItemSelectLight':'CategoryItemSelectDark'}}"></view>
     </view>
 
     <view class='CategorySingerLayout' bindtap='点击其他类'> 
-     <text class="{{SelectCategory==2?'CategoryItemTextLight':'CategoryItemTextDark'}}">其他类</text>
-     <view class="{{SelectCategory==2?'CategoryItemSelectLight':'CategoryItemSelectDark'}}"></view>
+     <text class="{{SelectCategory=='其他类'?'CategoryItemTextLight':'CategoryItemTextDark'}}">其他类</text>
+     <view class="{{SelectCategory=='其他类'?'CategoryItemSelectLight':'CategoryItemSelectDark'}}"></view>
     </view>
 </view>
-<!--子界面-->
-<view class='SonCategoryLayout'> 
-  <text>123</text>
-</view> 
+<view class='LineLayout'></view>
+<!--子界面 -->
+<view class='SonLayout'>
+  <!--左侧类别-->
+  <scroll-view class="SonCategoryLayout"scroll-y="true" style="height:{{scrollHeight}}px;"> 
+    <!--消费类-->
+     <view wx:if="{{SelectCategory=='消费类'}}">
+      <block wx:for="{{ConsumerClass}}" wx:key="id"> 
+        <view
+          class='CategoryItemLayout'
+          style="background-color:{{index==CurrentCategoryPostion?'#F3F5F7':'#ffffff'}}"
+          data-numid="{{index}}"
+          bindtap='选中消费类别数据'>
+          <view class="CategoryName_txt" style="color:{{index==CurrentCategoryPostion?'#E51C23':'#000000'}}">{{item.name}}</view>    
+        </view>
+      </block> 
+     </view>
+     <!--业务类-->
+     <view wx:elif="{{SelectCategory=='业务类'}}">
+      <block wx:for="{{BusinessClass}}" wx:key="id"> 
+        <view
+          class='CategoryItemLayout'
+          style="background-color:{{index==CurrentCategoryPostion?'#F3F5F7':'#ffffff'}}"
+          data-numid="{{index}}"
+          bindtap='选中业务类别数据'>
+          <view class="CategoryName_txt" style="color:{{index==CurrentCategoryPostion?'#E51C23':'#000000'}}">{{item.name}}</view>    
+        </view>
+      </block> 
+     </view>
+     <!--其他类-->
+     <view wx:else>
+      <block wx:for="{{OtherClasses}}" wx:key="id"> 
+        <view
+          class='CategoryItemLayout'
+          style="background-color:{{index==CurrentCategoryPostion?'#F3F5F7':'#ffffff'}}"
+          data-numid="{{index}}"
+          bindtap='选中其他类别数据'>
+          <view class="CategoryName_txt" style="color:{{index==CurrentCategoryPostion?'#E51C23':'#000000'}}">{{item.name}}</view>    
+        </view>
+      </block> 
+     </view>
+  </scroll-view>
+  <!--右侧业务-->
+  <scroll-view class="SonServiceLayout"scroll-y="true" style="height:{{scrollHeight}}px;"> 
+
+  </scroll-view>
+</view>

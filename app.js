@@ -19,7 +19,7 @@ App({
               if(that.userInfoReadyCallback)
                 that.userInfoReadyCallback(res)
               console.log(res.userInfo);
-              that.AutoLogin(res);   //自动登陆
+              that.AutoLogin(res);      //自动登陆
             },
             fail: function () { wx.showToast({ title: "获取信息失败!", }) }
           })

@@ -38,8 +38,6 @@ Page({
   onShow:function(){
     console.log("状态=" + app.globalData.vipStatus);
     var ShowStatus = this.GetUserStatusInfo();
-    this.setData({
-      MyBusiness: ShowStatus,
-    })
+    this.setData({MyBusiness: ShowStatus})
   }
 })
