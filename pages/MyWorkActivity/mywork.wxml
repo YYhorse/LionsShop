@@ -1,3 +1,4 @@
+<!--不是会员进行申请-->
 <view class="{{VipStatus=='vip'?'HideView':'ApplyInfoLayout'}}">
   <!--输入真实姓名-->
   <view class="SingerLineLayout">
@@ -17,3 +18,9 @@
   <!--信息提交-->
   <button class='AppleBtn' type="warn" bindtap='点击提交信息'>提交信息</button>
 </view>
+
+<!--是会员显示业务-->
+<view class="{{VipStatus=='vip'?'ServiceLayout':'HideView'}}">
+  <view class='BottomNewServiceLayout' bindtap='点击发布新业务'><text class='NewServiceText'>发布新业务</text></view>
+</view>
+

@@ -24,7 +24,7 @@ Page({
   加载类别产品信息:function(){
     var that = this;
     wx.request({
-      url: 'https://lionsshop.cn/api/v1/industry_types',
+      url: getApp().globalData.HomeUrl + getApp().globalData.GetCategrayUrl,
       data: {},
       method: 'GET',
       success: function (Ares) {

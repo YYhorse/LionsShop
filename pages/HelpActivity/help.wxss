@@ -90,6 +90,13 @@
 }
 .SonCategoryLayout{
   display: flex;
+  background-color: #FFFFFF;   
+  width: 25%;
+  height: 100%;
+  flex-direction:column;
+}
+.SonServiceLayout{
+  display: flex;
   background-color: #F3F5F7;   
   width: 25%;
   height: 100%;
@@ -116,11 +123,4 @@
   justify-content:center;
   text-align:center;
   color: "{{index==CurrentCategoryPostion?white:gray}}"
-}
-.SonServiceLayout{
-  display: flex;
-  background-color: #F3F5F7;   
-  width: 25%;
-  height: 100%;
-  flex-direction:column;
 }

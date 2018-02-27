@@ -9,7 +9,7 @@ Page({
     var that = this;
     wx.setNavigationBarTitle({ title: '首页' });
     wx.request({
-      url: 'https://lionsshop.cn/api/v1/users/home_page',
+      url: getApp().globalData.HomeUrl + getApp().globalData.GetHomeUrl,
       data: {},
       method: 'GET',
       success: function (Ares) {

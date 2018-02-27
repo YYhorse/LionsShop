@@ -21,6 +21,7 @@ Page({
     }
     else if (this.data.MyBusiness == "业务管理"){
       console.log("业务管理");
+      wx.navigateTo({ url: '/pages/MyWorkActivity/mywork' });
     }
     else
       app.GetUserInfo(); //待审核刷新

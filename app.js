@@ -31,7 +31,7 @@ App({
   AutoLogin:function(res){
     //----HTTP登陆请求-----//
     wx.request({
-      url: 'https://lionsshop.cn/api/v1/users/login',
+      url: getApp().globalData.HomeUrl + getApp().globalData.LoginUrl,
       data: { "code": getApp().globalData.code, "nickname": res.userInfo.nickName, "sex": res.userInfo.gender, "province": res.userInfo.province, "city": res.userInfo.city, "avatar": res.userInfo.avatarUrl},
       method: 'POST',
       success: function (Ares) {
@@ -62,5 +62,11 @@ App({
     realName: null,
     phoneNumber:null,
     vipStatus:false,
+    HomeUrl:'https://lionsshop.cn',
+    LoginUrl:'/api/v1/users/login',
+    GetHomeUrl:'/api/v1/users/home_page',
+    GetCategrayUrl:'/v1/industry_types',
+    GetTypeUrl:'/api/v1/stores/service_index',    
+    ApplyRegisterUrl:'/api/v1/enter_applies',
   }
 })

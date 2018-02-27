@@ -2,13 +2,17 @@
 const app = getApp()
 Page({
   data: {
-    VipStatus: app.globalData.vipStatus,
+    VipStatus: '',
     RealName: '',
     PhoneNumber:'',
     UserDetail:'',
+    ConsumerClass: null,
+    BusinessClass: null,
+    OtherClasses: null
   },
   onLoad: function (options) {
-    console.log("-------"+this.data.VipStatus);
+    this.setData({  VipStatus: app.globalData.vipStatus});
+    console.log("子状态:"+this.data.VipStatus);
     wx.setNavigationBarTitle({ title: this.data.VipStatus=='vip'?'我的业务':'申请信息'});
   },
   输入姓名:function(e){
@@ -30,7 +34,7 @@ Page({
     console.log("姓名:" + this.data.RealName + "电话:" + this.data.PhoneNumber + "备注:" + this.data.UserDetail);
     wx.showLoading({ title: '提交中' }),
     wx.request({
-      url: 'https://lionsshop.cn/api/v1/enter_applies',
+      url: getApp().globalData.HomeUrl + getApp().globalData.ApplyRegisterUrl,
       data: { "real_name": this.data.RealName, "phone_number": this.data.PhoneNumber, "detail": this.data.UserDetail, "user_id": app.globalData.user_id},
       method: 'POST',
       success: function (Ares) {
@@ -48,5 +52,8 @@ Page({
       },
       fail: function () { wx.hideLoading(); wx.showToast({ title: '登陆失败,服务器异常', }) }
     })
+  },
+  点击发布新业务:function(e){
+    wx.navigateTo({ url: '/pages/MyServiceActivity/myservice' });
   }
 })
