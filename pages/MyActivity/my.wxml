@@ -8,13 +8,13 @@
 <view class='SingerLayout' bindtap='点击管理'>
   <text class='SingerText'>{{MyBusiness}}</text>
   <view class='SingerEndLayout'>
-    <image class='SingerRightImage' src='/images/向右.png'></image>
+    <image class='SingerRightImage' src='/images/right.png'></image>
   </view>
 </view>
 <!--关于我们-->
 <view class='SingerLayout'>
   <text class='SingerText'>关于我们</text>
   <view class='SingerEndLayout'>
-    <image class='SingerRightImage' src='/images/向右.png'></image>
+    <image class='SingerRightImage' src='/images/right.png'></image>
   </view>
 </view>

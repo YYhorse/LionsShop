@@ -2,11 +2,12 @@
 const app = getApp()
 Page({
   data: {
-    SelectParentClass: '消费类',
-    ParentArray: ['消费类', '业务类', '其他类'],
+    SelectParentClass: '请选择',
+    ParentArray: ['请选择','消费类', '业务类', '其他类'],
     ParentIndex: 0,
-    SonArray:['无'],
+    SonArray:null,
     SonIndex:0,
+    SonIdArray:null,
     ServiceName:null,
     ServicePlace:null,
     ServiceDetail:null,
@@ -42,36 +43,57 @@ Page({
       ParentIndex: e.detail.value,
       SelectParentClass: this.data.ParentArray[e.detail.value]
     })
-    console.log('选择大类别为', this.data.SelectParentClass)
+    console.log('选择大类别为', this.data.SelectParentClass);
+    this.更新子类显示();
+  },
+  更新子类显示:function(){
+    if (this.data.SelectParentClass !='请选择'){
+      var tempNameArray = new Array();
+      var tempIdArray = new Array();
+      if (this.data.SelectParentClass == '消费类') {
+        for (var i = 0; i < this.data.ConsumerClass.length; i++){
+          tempNameArray.push(this.data.ConsumerClass[i].name);
+          tempIdArray.push(this.data.ConsumerClass[i].code);
+        }
+      }
+      else if(this.data.SelectParentClass == '业务类'){
+        for (var i = 0; i < this.data.BusinessClass.length; i++){
+          tempNameArray.push(this.data.BusinessClass[i].name);
+          tempIdArray.push(this.data.BusinessClass[i].code);
+        }
+      }
+      else {
+        for (var i = 0; i < this.data.OtherClasses.length; i++){
+          tempNameArray.push(this.data.OtherClasses[i].name);
+          tempIdArray.push(this.data.OtherClasses[i].code);
+        }
+      }
+      console.log("子类名称=" + tempNameArray + "子类编号=" + tempIdArray);
+      this.setData({
+        SonArray: tempNameArray,
+        SonIdArray: tempIdArray,
+        SonIndex: 0
+      })
+    }
   },
   选择子类别:function(e){
     this.setData({ SonIndex: e.detail.value })
     console.log('选择子类别为', this.data.SonArray[this.data.SonIndex])
   },
   输入名称: function (e) {
-    this.setData({
-      ServiceName: e.detail.value
-    })
+    this.setData({  ServiceName: e.detail.value })
   },
   输入地点: function (e) {
-    this.setData({
-      ServicePlace: e.detail.value
-    })
+    this.setData({  ServicePlace: e.detail.value  })
   },
   输入详情: function (e) {
-    this.setData({
-      ServiceDetail: e.detail.value
-    })
+    this.setData({  ServiceDetail: e.detail.value })
   },
   输入姓名:function(e){
-    this.setData({
-      ContactName: e.detail.value
-    })
+    this.setData({  ContactName: e.detail.value })
   },
   输入电话: function (e) {
-    this.setData({
-      ContactPhone: e.detail.value
-    })
+    this.setData({  ContactPhone: e.detail.value  })
   },
   拍摄照片:function(e){
     var that = this
@@ -81,18 +103,49 @@ Page({
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
-        var tempFilePaths = res.tempFilePaths
+        var tempFilePaths = res.tempFilePaths;
+        console.log("图片地址："+tempFilePaths);
         that.setData({
-          textHidden: true,
-          image_photo: tempFilePaths,
-          photoHidden: false
+          image_photo: tempFilePaths[0],
         })
       }
     })  
   },
+  //service_name   service_place  service_detail  contact_name  contact_tel  service_img  user_id  industry_code
   点击发布:function(e){
-    console.log('名称=' + this.data.ServiceName + "地点=" + this.data.ServicePlace + "详情=" + this.data.ServiceDetail + "联系人" + this.data.ContactName + this.data.ContactPhone);
-
-
+    var that =this;
+    //  console.log('名称=' + this.data.ServiceName + "地点=" + this.data.ServicePlace + "详情=" + this.data.ServiceDetail + "联系人" + this.data.ContactName + this.data.ContactPhone);
+    //  console.log('选择类别=' + this.data.SonArray[this.data.SonIndex] + '   编号:' + this.data.SonIdArray[this.data.SonIndex]);
+    var service_img = this.data.image_photo != null ? this.data.image_photo:"";
+    //--------发布活动请求-------//
+    wx.showLoading({ title: '提交中' });
+    wx.uploadFile({
+      url: getApp().globalData.HomeUrl + getApp().globalData.ApplyServiceUrl,
+      filePath: service_img,
+      name: 'service_img',
+      formData: {
+        'service_name': that.data.ServiceName,
+        'service_place': that.data.ServicePlace,
+        'service_detail': that.data.ServiceDetail,
+        'contact_name': that.data.ContactName,
+        'contact_tel': that.data.ContactPhone,
+        'user_id': getApp().globalData.user_id,
+        'industry_code': that.data.SonIdArray[that.data.SonIndex],
+      },  
+      success: function (res) {
+        console.log(res.data); 
+        wx.hideLoading(); 
+        if (res.data.state_code == 200){
+          console.log('上传成功');
+          wx.navigateBack();
+        }
+        else{
+          wx.showModal({
+            title: '错误提示',
+            content: '接口返回错误=' + res.data.state_code,
+          })
+        }
+      }
+    })
   }
 })

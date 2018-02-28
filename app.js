@@ -65,8 +65,10 @@ App({
     HomeUrl:'https://lionsshop.cn',
     LoginUrl:'/api/v1/users/login',
     GetHomeUrl:'/api/v1/users/home_page',
-    GetCategrayUrl:'/v1/industry_types',
+    GetCategrayUrl:'/api/v1/industry_types',
     GetTypeUrl:'/api/v1/stores/service_index',    
     ApplyRegisterUrl:'/api/v1/enter_applies',
+    ApplyServiceUrl:'/api/v1/stores',
+    GetServiceUrl:'/api/v1/stores',
   }
 })

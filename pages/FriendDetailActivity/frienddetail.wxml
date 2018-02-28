@@ -1,24 +1,24 @@
 <image class='TopImage' src="{{activityList.url}}"></image>
 <!--显示标题-->
 <view class='SingerLayout'>
-  <image class='ActivityStatusImage' src="{{activityList.activity_status==true?'/images/进行中.png':'/images/已结束.png'}}"></image>
+  <image class='ActivityStatusImage' src="{{activityList.activity_status==true?'/images/woking.png':'/images/over.png'}}"></image>
   <text class='ActivityTitleText'>{{activityList.title}}</text>
 </view>
 <!--显示地址-->
 <view class='SingerLayout'>
-  <image class='LogoImage' src='/images/位置.png'></image>
+  <image class='LogoImage' src='/images/place.png'></image>
   <text class='LogoTitleText'>活动地址:</text>
   <text class='LogoContextText'>{{activityList.place}}</text>
 </view>
 <!--显示时间-->
 <view class='SingerLayout'>
-  <image class='LogoImage' src='/images/时间.png'></image>
+  <image class='LogoImage' src='/images/time.png'></image>
   <text class='LogoTitleText'>活动时间:</text>
   <text class='LogoContextText'>{{activityList.time}}</text>
 </view>
 <!--显示联系人-->
 <view class='SingerLayout'>
-  <image class='LogoImage' src='/images/人.png'></image>
+  <image class='LogoImage' src='/images/people.png'></image>
   <text class='LogoTitleText'>联系人物:</text>
   <text class='LogoContextText'>{{activityList.contact_name}}</text>
   <view class='CallMe' bindtap='点击拨打电话'><text class='CallMeText'>拨打电话</text></view>

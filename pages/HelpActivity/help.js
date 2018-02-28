@@ -10,7 +10,7 @@ Page({
     OtherClasses:null
   },
   onLoad: function (options) {
-    var that = this;
+    var that = thiwx.requests;
     wx.setNavigationBarTitle({ title: '狮友帮' });
     //获取系统的参数，scrollHeight数值,微信必须要设置style:height才能监听滚动事件
     wx.getSystemInfo({

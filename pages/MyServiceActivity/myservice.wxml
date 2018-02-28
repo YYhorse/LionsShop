@@ -13,12 +13,12 @@
      </view>
   </picker>
   <text>-</text>
-  
-   <picker bindchange="选择子类别" value="{{SonIndex}}" range="{{SonArray}}">
+  <text>{{SonArray.name}}</text> 
+    <picker bindchange="选择子类别" value="{{SonIndex}}" range="{{SonArray}}">
      <view class='pickInfoview'>
       <text class='pickerInfoText'>{{SonArray[SonIndex]}}</text>
      </view>
-  </picker>
+  </picker> 
 </view>
 <!--业务地点-->
 <view class='InputTitleLayout'>
@@ -45,8 +45,9 @@
 <!--图片展示-->
 <text class='InputTitleText'>图片展示</text>
 <view class='PhotoShowLayout'>
-  <image class="{{image_photo!=null?'ShowPhotoImage':'HidePhotoImage'}}" src='{{image_photo[0]}}'></image>
-  <image class='TakePhotoImage' src='/images/拍照片.png' bindtap='拍摄照片'></image> 
+  <!-- <image wx:if="{{image_photo}}" class="ShowPhotoImage" src="{{image_photo[0]}}"></image>  -->
+   <image class="{{image_photo!=null?'ShowPhotoImage':'HidePhotoImage'}}" src='{{image_photo}}'></image> 
+  <image class='TakePhotoImage' src='/images/takephoto.png' bindtap='拍摄照片'></image> 
 </view>
 <!--底部发布-->
 <view class='BottomNewServiceLayout' bindtap='点击发布'><text class='NewServiceText'>发布</text></view>

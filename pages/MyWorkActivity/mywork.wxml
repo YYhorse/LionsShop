@@ -2,17 +2,17 @@
 <view class="{{VipStatus=='vip'?'HideView':'ApplyInfoLayout'}}">
   <!--输入真实姓名-->
   <view class="SingerLineLayout">
-    <image class='SingerLineImage' src='/images/人.png'></image> 
+    <image class='SingerLineImage' src='/images/people.png'></image> 
     <input class="SingerLineText" placeholder="请输入真实姓名" placeholder-style="color:#DADADA" bindinput="输入姓名"/>  
   </view> 
   <!--输入电话号码-->
   <view class="SingerLineLayout">
-    <image class='SingerLineImage' src='/images/电话.png'></image> 
+    <image class='SingerLineImage' src='/images/tel.png'></image> 
     <input class="SingerLineText" placeholder="请输入手机号" placeholder-style="color:#DADADA" bindinput="输入手机号"/>  
   </view>  
   <!--信息备注-->
   <view class="SingerLineLayout">
-    <image class='SingerLineImage' src='/images/备注.png'></image> 
+    <image class='SingerLineImage' src='/images/detail.png'></image> 
     <input class="SingerLineText" placeholder="请输入备注" placeholder-style="color:#DADADA" bindinput="输入备注"/>  
   </view> 
   <!--信息提交-->
@@ -21,6 +21,11 @@
 
 <!--是会员显示业务-->
 <view class="{{VipStatus=='vip'?'ServiceLayout':'HideView'}}">
+  <!--展示个人业务-->
+  <block wx:for="{{MyServices}}" wx:key="time">
+    <text>{{item.contact_tel}}</text>  
+  </block>
+  <!--底部发布新业务-->
   <view class='BottomNewServiceLayout' bindtap='点击发布新业务'><text class='NewServiceText'>发布新业务</text></view>
 </view>
 

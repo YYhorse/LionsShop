@@ -13,46 +13,46 @@
     <!-- 上层菜单 -->
     <view class='CategorySingerLayout'>
         <view class='CategoryItemLayout' bindtap='点击奢侈品'>
-          <image class='CategoryItemImage' src='/images/奢侈品.png'></image>
+          <image class='CategoryItemImage' src='/images/P1.png'></image>
           <text class='CategoryItemText'>奢侈品</text>
         </view>
         <view class='CategoryItemLayout' bindtap='点击酒水'>
-          <image class='CategoryItemImage' src='/images/酒水.png'></image>
+          <image class='CategoryItemImage' src='/images/P2.png'></image>
           <text class='CategoryItemText'>酒水</text>
         </view>
         <view class='CategoryItemLayout' bindtap='点击保健品'>
-          <image class='CategoryItemImage' src='/images/保健品.png'></image>
+          <image class='CategoryItemImage' src='/images/P3.png'></image>
           <text class='CategoryItemText'>保健品</text>
         </view>
         <view class='CategoryItemLayout' bindtap='点击汽车'>
-          <image class='CategoryItemImage' src='/images/汽车.png'></image>
+          <image class='CategoryItemImage' src='/images/P4.png'></image>
           <text class='CategoryItemText'>汽车</text>
         </view>
         <view class='CategoryItemLayout' bindtap='点击家装'>
-          <image class='CategoryItemImage' src='/images/家装.png'></image>
+          <image class='CategoryItemImage' src='/images/P5.png'></image>
           <text class='CategoryItemText'>家装</text>
         </view>
     </view>
     <!-- 下层菜单 -->
     <view class='CategorySingerLayout'>
         <view class='CategoryItemLayout' bindtap='点击财务会计'>
-          <image class='CategoryItemImage' src='/images/财务.png'></image>
+          <image class='CategoryItemImage' src='/images/P6.png'></image>
           <text class='CategoryItemText'>财务会计</text>
         </view>
         <view class='CategoryItemLayout' bindtap='点击广告传媒'>
-          <image class='CategoryItemImage' src='/images/广告.png'></image>
+          <image class='CategoryItemImage' src='/images/P7.png'></image>
           <text class='CategoryItemText'>广告传媒</text>
         </view>
         <view class='CategoryItemLayout' bindtap='点击法律顾问'>
-          <image class='CategoryItemImage' src='/images/法律顾问.png'></image>
+          <image class='CategoryItemImage' src='/images/P8.png'></image>
           <text class='CategoryItemText'>法律顾问</text>
         </view>
         <view class='CategoryItemLayout' bindtap='点击投资担保'>
-          <image class='CategoryItemImage' src='/images/投资.png'></image>
+          <image class='CategoryItemImage' src='/images/P9.png'></image>
           <text class='CategoryItemText'>投资担保</text>
         </view>
         <view class='CategoryItemLayout' bindtap='点击更多'>
-          <image class='CategoryItemImage' src='/images/更多.png'></image>
+          <image class='CategoryItemImage' src='/images/P10.png'></image>
           <text class='CategoryItemText'>更多</text>
         </view>
     </view>

@@ -8,12 +8,37 @@ Page({
     UserDetail:'',
     ConsumerClass: null,
     BusinessClass: null,
-    OtherClasses: null
+    OtherClasses: null,
+    MyService:null,
   },
   onLoad: function (options) {
     this.setData({  VipStatus: app.globalData.vipStatus});
     console.log("子状态:"+this.data.VipStatus);
-    wx.setNavigationBarTitle({ title: this.data.VipStatus=='vip'?'我的业务':'申请信息'});
+    if(this.data.VipStatus=='vip'){
+      wx.setNavigationBarTitle({  title: '我的业务'});
+      this.刷新个人业务();
+    }
+    else
+      wx.setNavigationBarTitle({ title: '申请信息' });
+  },
+  刷新个人业务:function(){
+    var that = this;
+    wx.request({
+      url: getApp().globalData.HomeUrl + getApp().globalData.GetServiceUrl,
+      data: {"user_id": app.globalData.user_id},
+      method: 'GET',
+      success: function (Ares) {
+        console.log(Ares.data);
+        if (Ares.data.state_code == 200){
+          that.setData({
+            MyServices: Ares.data.stores
+          })
+        }
+        else
+          wx.showToast({  title: '无个人业务',})
+      },
+      fail: function () { wx.showToast({ title: '获取失败,服务器异常', }) }
+    })    
   },
   输入姓名:function(e){
     this.setData({

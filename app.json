@@ -1,11 +1,11 @@
 {
   "pages":[
+        "pages/MainActivity/main",
     "pages/MyServiceActivity/myservice",
-    "pages/MainActivity/main",
+
     "pages/MyActivity/my",
     "pages/HelpActivity/help",
     "pages/MyWorkActivity/mywork",
-
     "pages/FriendActivity/friend",
     "pages/FriendDetailActivity/frienddetail"
   ],
