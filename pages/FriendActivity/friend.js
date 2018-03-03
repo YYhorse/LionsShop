@@ -28,5 +28,9 @@ Page({
     console.log('点击事件'+Index);
     console.log(activityJson); 
     wx.navigateTo({ url: '/pages/FriendDetailActivity/frienddetail?activityJson=' + activityJson })
+  },
+  点击发布活动:function(e){
+    console.log('发布活动');
+    wx.navigateTo({ url: '/pages/FriendPushActivity/friendpush'});
   }
 })

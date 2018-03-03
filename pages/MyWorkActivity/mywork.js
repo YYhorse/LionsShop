@@ -21,6 +21,13 @@ Page({
     else
       wx.setNavigationBarTitle({ title: '申请信息' });
   },
+  onShow: function () {
+    if(getApp().FlashServiceState == true){
+      console.log('成功编辑后刷新')
+      getApp().FlashServiceState = false;
+      this.刷新个人业务();
+    }
+  },
   刷新个人业务:function(){
     var that = this;
     wx.request({
@@ -29,10 +36,8 @@ Page({
       method: 'GET',
       success: function (Ares) {
         console.log(Ares.data);
-        if (Ares.data.state_code == 200){
-          that.setData({
-            MyServices: Ares.data.stores
-          })
+        if (Ares.data.status_code == 200){
+          that.setData({  MyServices: Ares.data.stores  })
         }
         else
           wx.showToast({  title: '无个人业务',})
@@ -41,19 +46,13 @@ Page({
     })    
   },
   输入姓名:function(e){
-    this.setData({
-      RealName: e.detail.value
-    })
+    this.setData({  RealName: e.detail.value  })
   },
   输入手机号:function(e){
-    this.setData({
-      PhoneNumber: e.detail.value
-    })
+    this.setData({  PhoneNumber: e.detail.value })
   },
   输入备注: function (e) {
-    this.setData({
-      UserDetail: e.detail.value
-    })
+    this.setData({  UserDetail: e.detail.value  })
   },
   点击提交信息:function(e){
     console.log("姓名:" + this.data.RealName + "电话:" + this.data.PhoneNumber + "备注:" + this.data.UserDetail);
@@ -78,7 +77,14 @@ Page({
       fail: function () { wx.hideLoading(); wx.showToast({ title: '登陆失败,服务器异常', }) }
     })
   },
+  点击指定业务:function(e){
+    var Index = e.currentTarget.dataset.numid;
+    let MyServiceJson = JSON.stringify(this.data.MyServices[Index]);
+    // console.log('点击事件' + Index);
+    console.log(MyServiceJson);
+    wx.navigateTo({ url: '/pages/MyServiceDetailActivity/myservicedetail?serviceJson=' + MyServiceJson })
+  },
   点击发布新业务:function(e){
     wx.navigateTo({ url: '/pages/MyServiceActivity/myservice' });
-  }
+  },
 })

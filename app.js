@@ -62,6 +62,7 @@ App({
     realName: null,
     phoneNumber:null,
     vipStatus:false,
+    FlashServiceState:false,
     HomeUrl:'https://lionsshop.cn',
     LoginUrl:'/api/v1/users/login',
     GetHomeUrl:'/api/v1/users/home_page',
@@ -70,5 +71,9 @@ App({
     ApplyRegisterUrl:'/api/v1/enter_applies',
     ApplyServiceUrl:'/api/v1/stores',
     GetServiceUrl:'/api/v1/stores',
+    DelServiceUrl:'/api/v1/stores/destroy_store',
+    EditServiceUrl:'/api/v1/stores/edit_store',
+    GetActivityUrl:'/api/v1/activities',
+    PushActivityUrl:'/api/v1/activities',
   }
 })

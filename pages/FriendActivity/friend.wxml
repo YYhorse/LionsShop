@@ -1,25 +1,32 @@
 <block wx:for="{{friendList}}" wx:key="time">
-  <!--顶部标题和状态-->
-  <view class='TopLayout'>
-    <text class='TitleText'>{{item.title}}</text>
-    <image class='ActivityStatue' src="{{item.activity_status==true?'/images/woking.png':'/images/over.png'}}"></image>
+  <!--单行数据-->
+  <view data-numid="{{index}}" bindtap="点击指定活动">
+    <!--顶部标题和状态-->
+    <view class='TopLayout'>
+      <text class='TitleText'>{{item.title}}</text>
+      <image class='ActivityStatue' src="{{item.activity_status==true?'/images/woking.png':'/images/over.png'}}"></image>
+    </view>
+    <!--中部图片-->
+    <image class='MiddleLayout' src="{{item.url}}"></image>
+    <!--底部信息-->
+    <view class='BottomLayout'>
+      <view class='ItemLayout'>
+        <image class='BottomItemImage' src='/images/people.png'></image>
+        <text class='BottomItemText'>{{item.contact_name}}</text>
+      </view>
+      <view class='ItemLayout'>
+        <image class='BottomItemImage' src='/images/place.png'></image>
+        <text class='BottomItemText'>{{item.place}}</text>
+      </view>
+      <view class='ItemLayout'>
+        <image class='BottomItemImage' src='/images/time.png'></image>
+        <text class='BottomItemText'>{{item.time}}</text>
+      </view>
+    </view>
+    <view class='BottomLine'></view>
   </view>
-  <!--中部图片-->
-  <image class='MiddleLayout' src="{{item.url}}" data-numid="{{index}}" bindtap="点击指定活动"></image>
-  <!--底部信息-->
-  <view class='BottomLayout'>
-    <view class='ItemLayout'>
-      <image class='BottomItemImage' src='/images/people.png'></image>
-      <text class='BottomItemText'>{{item.contact_name}}</text>
-    </view>
-    <view class='ItemLayout'>
-      <image class='BottomItemImage' src='/images/place.png'></image>
-      <text class='BottomItemText'>{{item.place}}</text>
-    </view>
-    <view class='ItemLayout'>
-      <image class='BottomItemImage' src='/images/time.png'></image>
-      <text class='BottomItemText'>{{item.time}}</text>
-    </view>
-  </view>
-  <view class='BottomLine'></view>
 </block>
+<view class='PushView'background-size="cover" mode="aspectFill" bindtap='点击发布活动'>
+  <image class='PushButton' src='/images/push.png' ></image>
+  <text class='PushText'>发表</text>
+</view>

@@ -16,11 +16,9 @@ Page({
   },
   点击管理:function(e){
     if (this.data.MyBusiness == "申请成为狮友"){
-      console.log("申请成为石油");
       wx.navigateTo({url: '/pages/MyWorkActivity/mywork'});
     }
     else if (this.data.MyBusiness == "业务管理"){
-      console.log("业务管理");
       wx.navigateTo({ url: '/pages/MyWorkActivity/mywork' });
     }
     else

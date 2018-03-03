@@ -1,0 +1,29 @@
+<view class='ImageLayout'>
+  <image src='{{image_photo}}' mode="widthFix"></image>
+</view>
+<view class='LineLayout'></view>
+<!--显示标题-->
+<view class='SingerLayout'>
+  <image class='LogoImage' src='/images/service.png'></image>
+  <text class='SingerTitleText'>狮友业务:</text>
+  <text class='SingerContextText'>{{ServiceName}}</text>
+</view>
+<!--显示名称-->
+<view class='SingerLayout'>
+  <image class='LogoImage' src='/images/people.png'></image>
+  <text class='SingerTitleText'>狮友名称:</text>
+  <text class='SingerContextText'>{{ContactName}}</text>
+</view>
+<!--显示地址-->
+<view class='SingerLayout'>
+  <image class='LogoImage' src='/images/place.png'></image>
+  <text class='SingerTitleText'>狮友地址:</text>
+  <text class='SingerContextText'>{{ServicePlace}}</text>
+</view>
+<!--显示活动详情-->
+<view class='DetailLayout'>
+  <text class='DetailTitle'>业务详情</text>
+  <text class='DetailContext'>\n{{ServiceDetail}}\n\n</text>
+</view>
+<!--底部联系-->
+<view class='BottomNewServiceLayout' bindtap='点击一键拨号'><text class='NewServiceText'>一键拨号</text></view>

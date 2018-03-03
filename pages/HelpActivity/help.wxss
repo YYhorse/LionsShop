@@ -86,7 +86,6 @@
   width: 100%;
   height: 100%;
   flex-direction:row;
-  position: fixed;
 }
 .SonCategoryLayout{
   display: flex;
@@ -98,7 +97,7 @@
 .SonServiceLayout{
   display: flex;
   background-color: #F3F5F7;   
-  width: 25%;
+  width: 75%;
   height: 100%;
   flex-direction:column;
 }
@@ -123,4 +122,83 @@
   justify-content:center;
   text-align:center;
   color: "{{index==CurrentCategoryPostion?white:gray}}"
+}
+.ServiceInfoLayout{
+  display: flex;
+  width: 97%;
+  height: 200rpx;
+  flex-direction: row;
+  background-color: white;
+  padding: 5px 0;
+  border: 1px solid #BBBBBB;
+  margin: 5rpx;
+  margin-top: 10rpx;
+}
+.ServiceImage{
+  display: flex;
+  width: 200rpx;
+  height: 200rpx;
+  margin-left: 10rpx;
+}
+.ServiceContextLayout{
+  display: flex;
+  width: 60%;
+  height: 200rpx;
+  flex-direction: column;
+  margin-left: 10rpx;
+}
+.ServiceTitleText{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  
+  font-size: 20px;
+  font-weight:bold;
+  color: black;
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+}
+.ServiceDetailText{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+  font-size: 15px;
+  color: #d3d3d3;
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+  height: 80rpx;
+}
+
+.BottomItemLayout{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: bottom;
+  margin-left: 20rpx;
+}
+.BottomItemImage{
+  display: flex;
+  width:  20px;
+  height: 20px;
+}
+.BottomItemText{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+  font-size: 25rpx;
+  color: #d3d3d3;
+  width: 80rpx;
+  margin-left: 5rpx;
+}
+.BottomItem2Text{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+  font-size: 25rpx;
+  color: #d3d3d3;
+  width: 120rpx;
+  margin-left: 5rpx;
 }

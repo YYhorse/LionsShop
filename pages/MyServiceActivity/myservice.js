@@ -111,7 +111,6 @@ Page({
       }
     })  
   },
-  //service_name   service_place  service_detail  contact_name  contact_tel  service_img  user_id  industry_code
   点击发布:function(e){
     var that =this;
     //  console.log('名称=' + this.data.ServiceName + "地点=" + this.data.ServicePlace + "详情=" + this.data.ServiceDetail + "联系人" + this.data.ContactName + this.data.ContactPhone);
@@ -131,21 +130,34 @@ Page({
         'contact_tel': that.data.ContactPhone,
         'user_id': getApp().globalData.user_id,
         'industry_code': that.data.SonIdArray[that.data.SonIndex],
-      },  
-      success: function (res) {
-        console.log(res.data); 
+      },
+      success: function (Ares) {
+        console.log(Ares.data); 
         wx.hideLoading(); 
-        if (res.data.state_code == 200){
+        if (Ares.data == '{"status_code":200}'){
           console.log('上传成功');
-          wx.navigateBack();
+          getApp().FlashServiceState = true;
+          wx.showModal({
+            title: '成功',
+            content: '业务提交成功，请等待审核!',
+            success: function (res) {
+              if (res.confirm || res.cancel)
+                wx.navigateBack();
+            }
+          })
         }
         else{
           wx.showModal({
             title: '错误提示',
-            content: '接口返回错误=' + res.data.state_code,
+            content: '接口返回错误=' + Ares.data.state_code,
+            success:function(res){
+              if (res.confirm || res.cancel) 
+                wx.navigateBack();
+            }
           })
         }
-      }
-    })
+      },
+      fail: function () { wx.showToast({ title: '获取失败,服务器异常', })      }  
+    })    
   }
 })

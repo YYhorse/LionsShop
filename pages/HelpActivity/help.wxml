@@ -67,6 +67,22 @@
   </scroll-view>
   <!--右侧业务-->
   <scroll-view class="SonServiceLayout"scroll-y="true" style="height:{{scrollHeight}}px;"> 
-
+     <block wx:for="{{SelectItemCategory.service_lists}}" wx:key="id"> 
+       <view class='ServiceInfoLayout' data-numid="{{index}}" bindtap="点击指定业务">
+          <!--业务信息图片-->
+          <image class='ServiceImage' src='{{item.picinfo[0].current_url}}'></image>
+          <!--业务信息内容-->
+          <view class='ServiceContextLayout'>
+            <text class='ServiceTitleText'>{{item.service_name}}</text>
+            <text class='ServiceDetailText'>{{item.service_detail}}</text>
+            <view class='BottomItemLayout'>
+              <image class='BottomItemImage' src='/images/people.png'></image>
+              <text class='BottomItemText'>{{item.contact_name}}</text>
+              <image class='BottomItemImage' src='/images/place.png'></image>
+              <text class='BottomItem2Text'>{{item.service_place}}</text>
+            </view>
+          </view>
+       </view>
+     </block> 
   </scroll-view>
 </view>

@@ -1,0 +1,41 @@
+<view class='LineLayout'></view>
+<!--活动标题-->
+<view class='InputTitleLayout'>
+  <text class='InputTitleText'>活动标题</text>
+  <input class="InputEditText" placeholder="请输入标题" placeholder-style="color:#DADADA" bindinput="输入标题"/> 
+</view>
+<!--活动地点-->
+<view class='InputTitleLayout'>
+  <text class='InputTitleText'>活动地点</text>
+  <text class='PlaceText'>{{PlaceClass.address}}</text>
+  <image class='PlaceImage' src='/images/map.png' bindtap='点击选择地点'></image>
+</view>
+<!--活动详情-->
+<view class="ServiceDetailLayout">
+  <text class='InputTitleText'>业务详情</text>
+  <textarea class='InputContextText' bindblur="bindTextAreaBlur" auto-height placeholder="请输入详情" bindinput="输入详情" />
+</view>
+<view class='LineLayout'></view>
+<!--选择开始时间-->
+<view class='TimeLayout'>
+  <picker mode="date" value="{{Begindates}}" start="2018-03-11" end="2020-03-11" bindchange="bindBeginDateChange">  
+    <text class='TimeText'>开始日期:</text>
+    <text class='TimeText'>{{Begindates}}</text>
+  </picker>  
+</view>
+<!--选择结束时间-->
+<view class='TimeLayout'>
+  <picker mode="date" value="{{Enddates}}" start="2018-03-11" end="2020-03-11" bindchange="bindEndDateChange">  
+    <text class='TimeText'>结束日期:</text>
+    <text class='TimeText'>{{Enddates}}</text>
+  </picker>  
+</view>
+<view class='LineLayout2'></view>
+<!--图片展示-->
+<text class='InputTitleText'>图片展示</text>
+<view class='PhotoShowLayout'>
+   <image class="{{image_photo!=null?'ShowPhotoImage':'HidePhotoImage'}}" src='{{image_photo}}'></image> 
+  <image class='TakePhotoImage' src='/images/takephoto.png' bindtap='拍摄照片'></image> 
+</view>
+<!--底部发布-->
+<view class='BottomNewServiceLayout' bindtap='点击发布'><text class='NewServiceText'>发布</text></view>

@@ -16,7 +16,7 @@ Page({
         console.log(Ares.data);
         that.setData({
           DynamicAdUrl: Ares.data.image_infos,
-          // StaticAdUrl: Ares.data.advertisement_url,
+          StaticAdUrl: Ares.data.advertisement_url,
         })
       },
       fail: function () { wx.showToast({ title: '登陆失败,服务器异常', }) }
