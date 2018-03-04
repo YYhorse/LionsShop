@@ -49,3 +49,7 @@ var localData = {
 module.exports = {
   postList:localData
 }
+
+/*
+{"status_code":200,"friend_info":[{"user_id":1,"title":"15:36","start_at":"2018-03-11 00:00:00","end_at":"2018-04-03 00:00:00","place":"辽宁省大连市甘井子区虹韵路1号","activity_state":"underway","detail":"测试","contact_name":"奥创","contact_number":"18698711581","activity_images":[{"current_url":"https://lionsshop.cn/uploads/activity_image/img_url/2/wx8289ef823b120966.o6zAJs9zMuO4UJGMEGveE_cR7jrM.8ffbaded5c6cd8bc89273e2ca2e95a14.jpg"}]}]}
+*/

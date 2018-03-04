@@ -54,10 +54,90 @@
   width: 100%;
   height: 60rpx;
   background-color: #F5F5F5;
+  flex-direction: column;
   align-items: center;
+  justify-content:center;
 }
 .GroomActivityText{
   margin-left: 20rpx;
   font-size: 30rpx;
   font-weight:bold;
+}
+.ActivityInfoLayout{
+  display: flex;
+  width: 97%;
+  height: 200rpx;
+  flex-direction: row;
+  background-color: white;
+  margin-top: 10rpx;
+  
+  padding: 5px 0;
+  border-bottom: 1px solid #ededed;
+}
+.ActivityImage{
+  display: flex;
+  width: 400rpx;
+  height: 200rpx;
+  margin-left: 10rpx;
+}
+.ActivityContextLayout{
+  display: flex;
+  width: 60%;
+  height: 200rpx;
+  flex-direction: column;
+  margin-left: 10rpx;
+}
+.ActivityTitleText{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  
+  font-size: 20px;
+  font-weight:bold;
+  color: black;
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+}
+.ActivityDetailText{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+  font-size: 15px;
+  color: #d3d3d3;
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+  height: 80rpx;
+}
+.BottomItemLayout{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: bottom;
+  margin-left: 20rpx;
+}
+.BottomItemImage{
+  display: flex;
+  width:  20px;
+  height: 20px;
+}
+.BottomItemText{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+  font-size: 25rpx;
+  color: #d3d3d3;
+  width: 80rpx;
+  margin-left: 5rpx;
+}
+.BottomItem2Text{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+  font-size: 25rpx;
+  color: #d3d3d3;
+  width: 70%;
+  margin-left: 5rpx;
 }

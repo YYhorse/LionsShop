@@ -4,6 +4,7 @@
   height: 400rpx;
   flex-direction: column;
   align-items: center;
+  justify-content:center;
 }
 .LineLayout{
   display: flex;

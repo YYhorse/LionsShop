@@ -1,7 +1,7 @@
-<image class='TopImage' src="{{activityList.url}}"></image>
+<image class='TopImage' src="{{activityList.activity_images[0].current_url}}"></image>
 <!--显示标题-->
 <view class='SingerLayout'>
-  <image class='ActivityStatusImage' src="{{activityList.activity_status==true?'/images/woking.png':'/images/over.png'}}"></image>
+  <image class='ActivityStatusImage' src="{{activityList.activity_state=='underway'?'/images/woking.png':'/images/over.png'}}"></image>
   <text class='ActivityTitleText'>{{activityList.title}}</text>
 </view>
 <!--显示地址-->
@@ -10,11 +10,17 @@
   <text class='LogoTitleText'>活动地址:</text>
   <text class='LogoContextText'>{{activityList.place}}</text>
 </view>
-<!--显示时间-->
+<!--显示开始时间-->
 <view class='SingerLayout'>
   <image class='LogoImage' src='/images/time.png'></image>
-  <text class='LogoTitleText'>活动时间:</text>
-  <text class='LogoContextText'>{{activityList.time}}</text>
+  <text class='LogoTitleText'>开始时间:</text>
+  <text class='LogoContextText'>{{activityList.start_at}}</text>
+</view>
+<!--显示截止时间-->
+<view class='SingerLayout'>
+  <image class='LogoImage' src='/images/time.png'></image>
+  <text class='LogoTitleText'>截止时间:</text>
+  <text class='LogoContextText'>{{activityList.end_at}}</text>
 </view>
 <!--显示联系人-->
 <view class='SingerLayout'>
@@ -28,3 +34,5 @@
   <text class='DetailTitle'>活动详情</text>
   <text class='DetailContext'>\n{{activityList.detail}}\n\n</text>
 </view>
+<!--底部联系-->
+<view class="{{userId==activityList.user_id?'BottomNewServiceLayout':'HideBottom'}}" bindtap='点击删除活动'><text class='NewServiceText'>删除活动</text></view>

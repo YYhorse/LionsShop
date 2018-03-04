@@ -63,6 +63,10 @@ App({
     phoneNumber:null,
     vipStatus:false,
     FlashServiceState:false,
+    FlashActivityState:false,
+    SelectCategrayValue:'消费类',
+    SelectItemCategory:'全球购',
+    FlashSelectFlag:false,
     HomeUrl:'https://lionsshop.cn',
     LoginUrl:'/api/v1/users/login',
     GetHomeUrl:'/api/v1/users/home_page',
@@ -75,5 +79,6 @@ App({
     EditServiceUrl:'/api/v1/stores/edit_store',
     GetActivityUrl:'/api/v1/activities',
     PushActivityUrl:'/api/v1/activities',
+    DelActivityUrl:'/api/v1/activities/destroy_activity',
   }
 })

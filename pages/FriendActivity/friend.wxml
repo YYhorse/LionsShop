@@ -4,23 +4,23 @@
     <!--顶部标题和状态-->
     <view class='TopLayout'>
       <text class='TitleText'>{{item.title}}</text>
-      <image class='ActivityStatue' src="{{item.activity_status==true?'/images/woking.png':'/images/over.png'}}"></image>
+      <image class='ActivityStatue' src="{{item.activity_state=='underway'?'/images/woking.png':'/images/over.png'}}"></image>
     </view>
     <!--中部图片-->
-    <image class='MiddleLayout' src="{{item.url}}"></image>
+    <image class='MiddleLayout' src="{{item.activity_images[0].current_url}}"></image>
     <!--底部信息-->
     <view class='BottomLayout'>
       <view class='ItemLayout'>
         <image class='BottomItemImage' src='/images/people.png'></image>
         <text class='BottomItemText'>{{item.contact_name}}</text>
       </view>
-      <view class='ItemLayout'>
+      <view class='ItemLayout2'>
         <image class='BottomItemImage' src='/images/place.png'></image>
         <text class='BottomItemText'>{{item.place}}</text>
       </view>
-      <view class='ItemLayout'>
+      <view class='ItemLayout2'>
         <image class='BottomItemImage' src='/images/time.png'></image>
-        <text class='BottomItemText'>{{item.time}}</text>
+        <text class='BottomItemText'>{{item.end_at}}</text>
       </view>
     </view>
     <view class='BottomLine'></view>

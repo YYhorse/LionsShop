@@ -3,8 +3,8 @@ const app = getApp()
 Page({
   data: {
     scrollHeight:null,
-    SelectCategory:'消费类',
-    SelectItemCategory:'全球购',
+    SelectCategory: null,
+    SelectItemCategory:null,
     CurrentCategoryPostion: 0,
     ConsumerClass:null,
     BusinessClass:null,
@@ -14,13 +14,16 @@ Page({
     var that = this;
     wx.setNavigationBarTitle({ title: '狮友帮' });
     //获取系统的参数，scrollHeight数值,微信必须要设置style:height才能监听滚动事件
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({  scrollHeight: parseInt(res.windowHeight) - 90 })
-      }
-    });
+    wx.getSystemInfo({  success: function (res) { that.setData({  scrollHeight: parseInt(res.windowHeight) - 90 }) } });
     //加载类别信息
-    this.加载类别产品信息();
+    if (app.globalData.FlashSelectFlag == false)
+      this.加载类别产品信息();
+  },
+  onShow:function(){
+    if (app.globalData.FlashSelectFlag == true){
+      console.log("狮友帮刷新=");
+      this.加载类别产品信息();
+    }
   },
   加载类别产品信息:function(){
     var that = this;
@@ -35,10 +38,9 @@ Page({
             ConsumerClass: Ares.data.消费类,
             BusinessClass: Ares.data.业务类,
             OtherClasses: Ares.data.其他类,
-            SelectCategory: '消费类',
-            CurrentCategoryPostion: 0,
-            SelectItemCategory: Ares.data.消费类[0],
+            SelectCategory: app.globalData.SelectCategrayValue,
           });
+          that.判断快捷跳转显示();
         }
         else {
           wx.showToast({ title: '申请失败,接口返回' + Ares.data.status_code, });
@@ -53,6 +55,7 @@ Page({
       CurrentCategoryPostion:0,
       SelectItemCategory: this.data.ConsumerClass[0],
     })
+    app.globalData.SelectCategrayValue = '消费类';
     console.log(this.data.SelectItemCategory);
   },
   点击业务类: function (e) {
@@ -61,6 +64,7 @@ Page({
       CurrentCategoryPostion: 0,
       SelectItemCategory: this.data.BusinessClass[0],
     })
+    app.globalData.SelectCategrayValue = '业务类';
     console.log(this.data.SelectItemCategory);
   },
   点击其他类: function (e) {
@@ -69,6 +73,7 @@ Page({
       CurrentCategoryPostion: 0,
       SelectItemCategory: this.data.OtherClasses[0],
     })
+    app.globalData.SelectCategrayValue = '其他类';
     console.log(this.data.SelectItemCategory);
   },
   选中消费类别数据:function (e) {
@@ -98,5 +103,78 @@ Page({
     let MyServiceJson = JSON.stringify(this.data.SelectItemCategory.service_lists[Index]);
     console.log(MyServiceJson);
     wx.navigateTo({ url: '/pages/HelpDetailActivity/helpdetail?MyServiceJson=' + MyServiceJson })
+  },
+  判断快捷跳转显示:function(){
+    var that = this;
+    //-------判断是否是首页快捷跳转-----------//
+    if (app.globalData.FlashSelectFlag == true) {
+      app.globalData.FlashSelectFlag = false;
+      if (app.globalData.SelectItemCategory == '奢侈品') {
+        that.setData({
+          SelectItemCategory: that.data.ConsumerClass[3],
+          CurrentCategoryPostion: 3
+        })
+      }
+      else if (app.globalData.SelectItemCategory == '酒水') {
+        that.setData({
+          SelectItemCategory: that.data.ConsumerClass[5],
+          CurrentCategoryPostion: 5
+        })
+      }
+      else if (app.globalData.SelectItemCategory == '保健品') {
+        that.setData({
+          SelectItemCategory: that.data.ConsumerClass[7],
+          CurrentCategoryPostion: 7
+        })
+      }
+      else if (app.globalData.SelectItemCategory == '汽车用品') {
+        that.setData({
+          SelectItemCategory: that.data.ConsumerClass[8],
+          CurrentCategoryPostion: 8
+        })
+      }
+      else if (app.globalData.SelectItemCategory == '家装') {
+        that.setData({
+          SelectItemCategory: that.data.ConsumerClass[9],
+          CurrentCategoryPostion: 9
+        })
+      }
+      else if (app.globalData.SelectItemCategory == '财务会计') {
+        that.setData({
+          SelectItemCategory: that.data.BusinessClass[0],
+          CurrentCategoryPostion: 0
+        })
+      }
+      else if (app.globalData.SelectItemCategory == '广告传媒') {
+        that.setData({
+          SelectItemCategory: that.data.BusinessClass[1],
+          CurrentCategoryPostion: 1
+        })
+      }
+      else if (app.globalData.SelectItemCategory == '法律顾问') {
+        that.setData({
+          SelectItemCategory: that.data.BusinessClass[2],
+          CurrentCategoryPostion: 2
+        })
+      }
+      else if (app.globalData.SelectItemCategory == '投资担保') {
+        that.setData({
+          SelectItemCategory: that.data.BusinessClass[3],
+          CurrentCategoryPostion: 3
+        })
+      }
+      else if (app.globalData.SelectItemCategory == '更多其他') {
+        that.setData({
+          SelectItemCategory: that.data.OtherClasses[0],
+          CurrentCategoryPostion: 0
+        })
+      }
+    }
+    else {
+      that.setData({
+        SelectItemCategory: that.data.ConsumerClass[0],
+        CurrentCategoryPostion: 0,
+      })
+    }
   }
 })
