@@ -9,7 +9,7 @@ Page({
     SonIndex:0,
     SonIdArray:null,
     ServiceName:null,
-    ServicePlace:null,
+    ServicePlaceClass:'',
     ServiceDetail:null,
     ContactName:null,
     ContactPhone:null,
@@ -83,8 +83,17 @@ Page({
   输入名称: function (e) {
     this.setData({  ServiceName: e.detail.value })
   },
-  输入地点: function (e) {
-    this.setData({  ServicePlace: e.detail.value  })
+  点击选择地点:function(e){
+    console.log("点击选择地点")
+    var that = this;
+    wx.chooseLocation({
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          ServicePlaceClass: res
+        })
+      },
+    })
   },
   输入详情: function (e) {
     this.setData({  ServiceDetail: e.detail.value })
@@ -124,7 +133,10 @@ Page({
       name: 'service_img',
       formData: {
         'service_name': that.data.ServiceName,
-        'service_place': that.data.ServicePlace,
+        'address_name': that.data.PlaceClass.name,
+        'address_detail': that.data.PlaceClass.address,
+        'latitude': that.data.PlaceClass.latitude,
+        'longitude': that.data.PlaceClass.longitude,
         'service_detail': that.data.ServiceDetail,
         'contact_name': that.data.ContactName,
         'contact_tel': that.data.ContactPhone,

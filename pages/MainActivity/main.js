@@ -15,11 +15,15 @@ Page({
       method: 'GET',
       success: function (Ares) {
         console.log(Ares.data);
-        that.setData({
-          DynamicAdUrl: Ares.data.image_infos,
-          StaticAdUrl: Ares.data.advertisement_url,
-          ActivityInfo: Ares.data.activities,
-        })
+        if (Ares.data.status == 500)
+          wx.showModal({  title: '异常',  content: '接口访问异常!Code=' + Ares.data.status })
+        else{
+          that.setData({
+            DynamicAdUrl: Ares.data.image_infos,
+            StaticAdUrl: Ares.data.advertisement_url,
+            ActivityInfo: Ares.data.activities,
+          })
+        }
       },
       fail: function () { wx.showToast({ title: '登陆失败,服务器异常', }) }
     })
@@ -83,5 +87,12 @@ Page({
     app.globalData.SelectCategrayValue = '其他类';
     app.globalData.SelectItemCategory = '更多其他';
     wx.switchTab({ url: '/pages/HelpActivity/help' })
+  },
+  点击指定推荐活动:function(e){
+    var Index = e.currentTarget.dataset.numid;
+    let activityJson = JSON.stringify(this.data.ActivityInfo[Index]);
+    console.log('点击事件' + Index);
+    console.log(activityJson);
+    wx.navigateTo({ url: '/pages/FriendDetailActivity/frienddetail?activityJson=' + activityJson })
   }
 })

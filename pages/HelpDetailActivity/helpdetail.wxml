@@ -18,7 +18,7 @@
 <view class='SingerLayout'>
   <image class='LogoImage' src='/images/place.png'></image>
   <text class='SingerTitleText'>狮友地址:</text>
-  <text class='SingerContextText'>{{ServicePlace}}</text>
+  <text class='SingerContextText'>{{ServiceAddressName}}</text>
 </view>
 <!--显示活动详情-->
 <view class='DetailLayout'>

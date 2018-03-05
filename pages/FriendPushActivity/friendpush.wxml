@@ -7,7 +7,7 @@
 <!--活动地点-->
 <view class='InputTitleLayout'>
   <text class='InputTitleText'>活动地点</text>
-  <text class='PlaceText'>{{PlaceClass.address}}</text>
+  <text class='PlaceText'>{{PlaceClass.name}}</text>
   <image class='PlaceImage' src='/images/map.png' bindtap='点击选择地点'></image>
 </view>
 <!--活动详情-->

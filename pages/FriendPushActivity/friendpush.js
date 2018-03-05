@@ -57,6 +57,7 @@ Page({
     })
   },
   点击发布:function(e){
+    console.log(this.data.PlaceClass);
     console.log(this.data.TitleText + "|" + this.data.PlaceClass.address + "|" + this.data.Begindates + "|" + this.data.Enddates + "|" + this.data.DetailText);
     if (this.data.TitleText != '' && this.data.PlaceClass != '' && this.data.Enddates!=''){
       if (this.data.image_photo == null)
@@ -73,7 +74,10 @@ Page({
             'title': that.data.TitleText,
             'start_at': that.data.Begindates,
             'end_at': that.data.Enddates,
-            'place': that.data.PlaceClass.address,
+            'address_name': that.data.PlaceClass.name,
+            'address_detail': that.data.PlaceClass.address,
+            'latitude': that.data.PlaceClass.latitude,
+            'longitude': that.data.PlaceClass.longitude,
             'detail': that.data.DetailText,
           },
           success: function (Ares) {

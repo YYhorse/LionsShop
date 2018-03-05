@@ -16,7 +16,7 @@
       </view>
       <view class='ItemLayout2'>
         <image class='BottomItemImage' src='/images/place.png'></image>
-        <text class='BottomItemText'>{{item.place}}</text>
+        <text class='BottomItemText'>{{item.address_name}}</text>
       </view>
       <view class='ItemLayout2'>
         <image class='BottomItemImage' src='/images/time.png'></image>

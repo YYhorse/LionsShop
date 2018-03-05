@@ -4,7 +4,10 @@ Page({
   data: {
     ServiceInfoList:null,
     ServiceName: null,
-    ServicePlace: null,
+    ServiceAddressName: null,
+    ServiceAddressDetail:null,
+    ServiceAddressLatitude:null,
+    ServiceAddressLongitude: null,
     ServiceDetail: null,
     ContactName: null,
     ContactPhone: null,
@@ -19,7 +22,10 @@ Page({
     console.log(tempList.picinfo[0].current_url);
     this.setData({
       ServiceName: tempList.service_name,
-      ServicePlace: tempList.service_place,
+      ServiceAddressName: tempList.address_name,
+      ServiceAddressDetail: tempList.address_detail,
+      ServiceAddressLatitude: tempList.latitude,
+      ServiceAddressLongitude: tempList.longitude,
       ServiceDetail: tempList.service_detail,
       ContactName: tempList.contact_name,
       ContactPhone: tempList.contact_tel,

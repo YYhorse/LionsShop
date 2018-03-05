@@ -73,7 +73,7 @@
           <image class='BottomItemImage' src='/images/people.png'></image>
           <text class='BottomItemText'>{{item.contact_name}}</text>
           <image class='BottomItemImage' src='/images/place.png'></image>
-          <text class='BottomItem2Text'>{{item.place}}</text>
+          <text class='BottomItem2Text'>{{item.address_name}}</text>
         </view>
       </view>
     </view>

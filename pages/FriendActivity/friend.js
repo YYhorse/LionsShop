@@ -28,17 +28,24 @@ Page({
         method: 'GET',
         success: function (Ares) {
           console.log(Ares.data);
-          if (that.data.PullDownRefreshStatus){
+          if (that.data.PullDownRefreshStatus) {
             that.data.PullDownRefreshStatus = false;
             // 隐藏导航栏loading  
             wx.hideNavigationBarLoading();
             // 当处理完数据刷新后，wx.stopPullDownRefresh可以停止当前页面的下拉刷新  
             wx.stopPullDownRefresh();
           }
-          that.setData({
-            UserId: getApp().globalData.user_id,
-            friendList: Ares.data.friend_info
-          })
+          
+          if (Ares.data.status_code == 200){
+            that.setData({
+              UserId: getApp().globalData.user_id,
+              friendList: Ares.data.friend_info
+            })
+          }
+          else if (Ares.data.status_code == 604)
+            wx.showToast({ title: '狮友圈无活动!', })
+          else
+            wx.showModal({ title: '异常', content: '接口访问异常!Code=' + Ares.data.status })
         },
       fail: function () { wx.showToast({ title: '获取失败,服务器异常', }) }
     })

@@ -76,13 +76,13 @@
 }
 .ActivityImage{
   display: flex;
-  width: 400rpx;
+  width: 50%;
   height: 200rpx;
   margin-left: 10rpx;
 }
 .ActivityContextLayout{
   display: flex;
-  width: 60%;
+  width: 40%;
   height: 200rpx;
   flex-direction: column;
   margin-left: 10rpx;

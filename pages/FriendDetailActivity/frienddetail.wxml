@@ -8,7 +8,8 @@
 <view class='SingerLayout'>
   <image class='LogoImage' src='/images/place.png'></image>
   <text class='LogoTitleText'>活动地址:</text>
-  <text class='LogoContextText'>{{activityList.place}}</text>
+  <text class='AddressContextText'>{{activityList.address_name}}</text>
+  <image class='PlaceImage' src='/images/map.png' bindtap='点击查看地点'></image>
 </view>
 <!--显示开始时间-->
 <view class='SingerLayout'>
