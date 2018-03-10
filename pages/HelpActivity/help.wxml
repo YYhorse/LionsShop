@@ -1,9 +1,9 @@
 <view class="SearchLayout" >
   <view class="search_arr">
     <icon class="searchcion" size='20' color='#ffffff' type='search'></icon>  
-    <input class="" placeholder="  请输入关键字" placeholder-style="color:#DADADA"  value="{{searchValue}}"/>  
-    </view>  
-  <view class='sousuo'><text class='searchText'>搜索</text></view>
+    <input class="searchinput" placeholder="  请输入关键字" placeholder-style="color:#DADADA"  bindinput="输入搜索"/>  
+  </view>  
+  <view class='sousuo' bindtap='点击搜索'><text class='searchText'>搜索</text></view>
 </view>
 <!--大类-->
 <view class='BigCategoryLayout'> 
@@ -79,7 +79,7 @@
               <image class='BottomItemImage' src='/images/people.png'></image>
               <text class='BottomItemText'>{{item.contact_name}}</text>
               <image class='BottomItemImage' src='/images/place.png'></image>
-              <text class='BottomItem2Text'>{{item.service_place}}</text>
+              <text class='BottomItem2Text'>{{item.address_name}}</text>
             </view>
           </view>
        </view>

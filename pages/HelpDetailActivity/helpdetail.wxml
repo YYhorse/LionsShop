@@ -19,6 +19,7 @@
   <image class='LogoImage' src='/images/place.png'></image>
   <text class='SingerTitleText'>狮友地址:</text>
   <text class='SingerContextText'>{{ServiceAddressName}}</text>
+  <image class='PlaceImage' src='/images/map.png' bindtap='点击查看地点'></image>
 </view>
 <!--显示活动详情-->
 <view class='DetailLayout'>

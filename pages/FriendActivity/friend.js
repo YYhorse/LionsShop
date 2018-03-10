@@ -2,10 +2,12 @@
 var postData = require('../../data/friend_data.js');
 Page({
   data: {
-    UserId: null,
+    UserId: getApp().globalData.user_id,
     friendList:"",
     current_page:0,
+    Max_page:100,
     PullDownRefreshStatus:false,
+    PullUpRefreshStatus:false,
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({ title: '狮友圈' });
@@ -20,6 +22,14 @@ Page({
     this.data.current_page = 0;
     this.获取活动();
   },
+  // 上拉加载更多
+  onReachBottom:function(){
+    console.log("上拉加载");
+    wx.showNavigationBarLoading();
+    this.data.PullUpRefreshStatus = true;
+    this.data.current_page = this.data.current_page + 1;
+    this.获取活动();
+  },
   获取活动:function(e){
     var that = this;
       wx.request({
@@ -28,24 +38,39 @@ Page({
         method: 'GET',
         success: function (Ares) {
           console.log(Ares.data);
-          if (that.data.PullDownRefreshStatus) {
+          //-------处理网络数据-------//
+          if (Ares.data.status_code == 200){
+            if (that.data.PullUpRefreshStatus){
+              //上拉加载更多
+              var temp_list = that.data.friendList;
+              for (var i = 0; i < Ares.data.friend_info.length;i++)
+                temp_list.push(Ares.data.friend_info[i]);
+              that.setData({  friendList: temp_list })
+            }
+            else{
+              //下拉刷新 或者 正常加载
+              that.setData({  friendList: Ares.data.friend_info })
+              that.setData({  friendList: that.data.friendList  })
+            }
+          }
+          else if (Ares.data.status_code == 604){
+            wx.showToast({ title: '狮友圈无活动!', })
+            if (that.data.current_page < that.data.Max_page)
+              that.data.Max_page = that.data.current_page;
+            else
+              that.data.current_page--;
+          }
+          else
+            wx.showModal({ title: '异常', content: '接口访问异常!Code=' + Ares.data.status })
+          //--------加载条隐藏-------//
+          if (that.data.PullDownRefreshStatus || that.data.PullUpRefreshStatus) {
+            that.data.PullUpRefreshStatus = false;
             that.data.PullDownRefreshStatus = false;
             // 隐藏导航栏loading  
             wx.hideNavigationBarLoading();
             // 当处理完数据刷新后，wx.stopPullDownRefresh可以停止当前页面的下拉刷新  
             wx.stopPullDownRefresh();
           }
-          
-          if (Ares.data.status_code == 200){
-            that.setData({
-              UserId: getApp().globalData.user_id,
-              friendList: Ares.data.friend_info
-            })
-          }
-          else if (Ares.data.status_code == 604)
-            wx.showToast({ title: '狮友圈无活动!', })
-          else
-            wx.showModal({ title: '异常', content: '接口访问异常!Code=' + Ares.data.status })
         },
       fail: function () { wx.showToast({ title: '获取失败,服务器异常', }) }
     })

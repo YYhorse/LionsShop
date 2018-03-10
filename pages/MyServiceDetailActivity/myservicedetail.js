@@ -6,6 +6,7 @@ Page({
     ServiceInfoList:null,
     ServiceName: null,
     ServicePlace: null,
+    ServicePlaceClass: '',
     ServiceDetail: null,
     ContactName: null,
     ContactPhone: null,
@@ -20,7 +21,7 @@ Page({
     this.setData({
       ServiceCode: tempList.store_code,
       ServiceName: tempList.service_name,
-      ServicePlace: tempList.service_place,
+      ServicePlace: tempList.address_name,
       ServiceDetail: tempList.service_detail,
       ContactName: tempList.contact_name,
       ContactPhone: tempList.contact_tel,
@@ -30,8 +31,18 @@ Page({
   输入名称: function (e) {
     this.setData({ ServiceName: e.detail.value })
   },
-  输入地点: function (e) {
-    this.setData({ ServicePlace: e.detail.value })
+  点击选择地点: function (e) {
+    console.log("点击选择地点")
+    var that = this;
+    wx.chooseLocation({
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          ServicePlaceClass: res,
+          ServicePlace: res.name
+        })
+      },
+    })
   },
   输入详情: function (e) {
     this.setData({ ServiceDetail: e.detail.value })
@@ -104,7 +115,10 @@ Page({
         name: 'service_img',
         formData: {
           'service_name': that.data.ServiceName,
-          'service_place': that.data.ServicePlace,
+          'address_name': that.data.ServicePlaceClass.name,
+          'address_detail': that.data.ServicePlaceClass.address,
+          'latitude': that.data.ServicePlaceClass.latitude,
+          'longitude': that.data.ServicePlaceClass.longitude,
           'service_detail': that.data.ServiceDetail,
           'contact_name': that.data.ContactName,
           'contact_tel': that.data.ContactPhone,
@@ -146,7 +160,10 @@ Page({
         url: getApp().globalData.HomeUrl + getApp().globalData.EditServiceUrl,
         data: {
           "service_name": that.data.ServiceName,
-          "service_place": that.data.ServicePlace,
+          'address_name': that.data.ServicePlaceClass.name,
+          'address_detail': that.data.ServicePlaceClass.address,
+          'latitude': that.data.ServicePlaceClass.latitude,
+          'longitude': that.data.ServicePlaceClass.longitude,
           "service_detail": that.data.ServiceDetail,
           "contact_name": that.data.ContactName,
           "contact_tel": that.data.ContactPhone,

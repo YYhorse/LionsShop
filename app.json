@@ -6,13 +6,14 @@
     "pages/MyActivity/my",
     "pages/HelpActivity/help",
     "pages/HelpDetailActivity/helpdetail",
+    "pages/HelpSearchActivity/helpsearch",
     "pages/MyWorkActivity/mywork",
     "pages/FriendActivity/friend",
     "pages/FriendPushActivity/friendpush",        
     "pages/FriendDetailActivity/frienddetail"
   ],
   "window":{
-    "backgroundTextStyle":"light",
+    "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#E51C23",
     "navigationBarTitleText": "狮友圈",
     "navigationBarTextStyle":"white",

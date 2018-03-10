@@ -13,6 +13,7 @@
 <view class='InputTitleLayout'>
   <text class='InputTitleText'>业务地点</text>
   <input class="InputEditText" placeholder="{{ServicePlace}}" placeholder-style="color:#DADADA" bindinput="输入地点"/> 
+  <image class='PlaceImage' src='/images/map.png' bindtap='点击选择地点'></image>
 </view>
 <!--业务详情-->
 <view class="ServiceDetailLayout">

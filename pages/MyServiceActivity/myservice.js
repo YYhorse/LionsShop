@@ -114,9 +114,7 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
         var tempFilePaths = res.tempFilePaths;
         console.log("图片地址："+tempFilePaths);
-        that.setData({
-          image_photo: tempFilePaths[0],
-        })
+        that.setData({  image_photo: tempFilePaths[0] })
       }
     })  
   },
@@ -133,10 +131,10 @@ Page({
       name: 'service_img',
       formData: {
         'service_name': that.data.ServiceName,
-        'address_name': that.data.PlaceClass.name,
-        'address_detail': that.data.PlaceClass.address,
-        'latitude': that.data.PlaceClass.latitude,
-        'longitude': that.data.PlaceClass.longitude,
+        'address_name': that.data.ServicePlaceClass.name,
+        'address_detail': that.data.ServicePlaceClass.address,
+        'latitude': that.data.ServicePlaceClass.latitude,
+        'longitude': that.data.ServicePlaceClass.longitude,
         'service_detail': that.data.ServiceDetail,
         'contact_name': that.data.ContactName,
         'contact_tel': that.data.ContactPhone,
@@ -161,7 +159,7 @@ Page({
         else{
           wx.showModal({
             title: '错误提示',
-            content: '接口返回错误=' + Ares.data.state_code,
+            content: '接口返回错误=' + Ares.data,
             success:function(res){
               if (res.confirm || res.cancel) 
                 wx.navigateBack();

@@ -37,5 +37,16 @@ Page({
     wx.makePhoneCall({
       phoneNumber: that.data.ContactPhone,
     })
+  },
+  点击查看地点: function (e) {
+    var that = this;
+    console.log('Latitude=' + that.data.ServiceAddressLatitude + 'longitude=' + that.data.ServiceAddressLongitude)
+    wx.openLocation({
+      latitude: parseFloat(that.data.ServiceAddressLatitude),
+      longitude: parseFloat(that.data.ServiceAddressLongitude),
+      name: that.data.ServiceAddressName,
+      address: that.data.ServiceAddressDetail,
+      scale: 28
+    })
   }
 })

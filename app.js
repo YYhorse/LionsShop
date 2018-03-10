@@ -77,6 +77,7 @@ App({
     GetServiceUrl:'/api/v1/stores',
     DelServiceUrl:'/api/v1/stores/destroy_store',
     EditServiceUrl:'/api/v1/stores/edit_store',
+    SearchServiceUrl: '/api/v1/stores/hunt_for',
     GetActivityUrl:'/api/v1/activities',
     PushActivityUrl:'/api/v1/activities',
     DelActivityUrl:'/api/v1/activities/destroy_activity',

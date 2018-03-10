@@ -7,6 +7,9 @@ Page({
     ActivityInfo:null,
   },
   onLoad: function (options) {
+    this.获取首页信息();
+  },
+  获取首页信息:function(){
     var that = this;
     wx.setNavigationBarTitle({ title: '首页' });
     wx.request({
@@ -16,8 +19,8 @@ Page({
       success: function (Ares) {
         console.log(Ares.data);
         if (Ares.data.status == 500)
-          wx.showModal({  title: '异常',  content: '接口访问异常!Code=' + Ares.data.status })
-        else{
+          wx.showModal({ title: '异常', content: '接口访问异常!Code=' + Ares.data.status })
+        else {
           that.setData({
             DynamicAdUrl: Ares.data.image_infos,
             StaticAdUrl: Ares.data.advertisement_url,

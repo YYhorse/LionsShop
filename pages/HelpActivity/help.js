@@ -2,13 +2,15 @@
 const app = getApp()
 Page({
   data: {
+    SearchText:null,
     scrollHeight:null,
     SelectCategory: null,
     SelectItemCategory:null,
     CurrentCategoryPostion: 0,
     ConsumerClass:null,
     BusinessClass:null,
-    OtherClasses:null
+    OtherClasses:null,
+    PullDownRefreshStatus: false,
   },
   onLoad: function (options) {
     var that = this;
@@ -25,6 +27,47 @@ Page({
       this.加载类别产品信息();
     }
   },
+  // 下拉刷新  
+  onPullDownRefresh: function () {
+    // 显示导航栏loading  
+    wx.showNavigationBarLoading();
+    this.data.PullDownRefreshStatus = true;
+    this.加载类别产品信息();
+  },
+  输入搜索: function (e) {
+    this.setData({ SearchText: e.detail.value })
+  },
+  点击搜索:function(e){
+    var that = this;
+    console.log('搜索' + this.data.SearchText);
+    wx.showLoading({ title: '搜索业务中' }),
+      wx.request({
+        url: getApp().globalData.HomeUrl + getApp().globalData.SearchServiceUrl,
+        data: { "search_name": that.data.SearchText },
+        method: 'POST',
+        success: function (Ares) {
+          wx.hideLoading();
+          console.log(Ares.data);
+          if (Ares.data.status_code == 200) {
+            // console.log('删除成功');
+            let SearchServiceJson = JSON.stringify(Ares.data.stores);
+            console.log(SearchServiceJson);
+            wx.navigateTo({ url: '/pages/HelpSearchActivity/helpsearch?SearchServiceJson=' + SearchServiceJson })
+          }
+          else {
+            // wx.showModal({
+            //   title: '错误提示',
+            //   content: '接口返回错误=' + Ares.data.state_code,
+            //   success: function (res) {
+            //     if (res.confirm || res.cancel)
+            //       wx.navigateBack();
+            //   }
+            // })
+          }
+        },
+        fail: function () { wx.hideLoading(); wx.showToast({ title: '查找业务失败,服务器异常', }) }
+      })
+  },
   加载类别产品信息:function(){
     var that = this;
     wx.request({
@@ -33,6 +76,11 @@ Page({
       method: 'GET',
       success: function (Ares) {
         console.log(Ares.data);
+        if (that.data.PullDownRefreshStatus) {
+          that.data.PullDownRefreshStatus = false;
+          wx.hideNavigationBarLoading();       // 隐藏导航栏loading  
+          wx.stopPullDownRefresh();
+        }
         if (Ares.data.status_code == 200) {
           that.setData({
             ConsumerClass: Ares.data.消费类,

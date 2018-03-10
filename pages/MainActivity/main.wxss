@@ -82,7 +82,7 @@
 }
 .ActivityContextLayout{
   display: flex;
-  width: 40%;
+  width: 50%;
   height: 200rpx;
   flex-direction: column;
   margin-left: 10rpx;
@@ -118,7 +118,7 @@
 }
 .BottomItemImage{
   display: flex;
-  width:  20px;
+  width:  30px;
   height: 20px;
 }
 .BottomItemText{
@@ -128,7 +128,7 @@
 
   font-size: 25rpx;
   color: #d3d3d3;
-  width: 80rpx;
+  width: 120rpx;
   margin-left: 5rpx;
 }
 .BottomItem2Text{
