@@ -11,19 +11,27 @@
   <!--中部类别选项-->    
   <view class='CategoryLayout'>
     <view class='CategoryItemLayout' bindtap='点击找狮友'>
-      <image class='CategoryItemImage' src='/images/P1.png' mode="aspectFit"></image>
+      <view class='CategoryItemImageLayout'>
+        <image class='CategoryItemImage' src='/images/P1.png' mode="aspectFit"></image>
+      </view>
       <text class='CategoryItemText'>找狮友</text>
     </view>
     <view class='CategoryItemLayout' bindtap='点击找优惠'>
-      <image class='CategoryItemImage' src='/images/P2.png' mode="aspectFill"></image>
+      <view class='CategoryItemImageLayout'>
+        <image class='CategoryItemImage' src='/images/P2.png' mode="aspectFill"></image>
+      </view>
       <text class='CategoryItemText'>找优惠</text>
     </view>
     <view class='CategoryItemLayout' bindtap='点击找店铺'>
-      <image class='CategoryItemImage' src='/images/P3.png' mode="aspectFit"></image>
+      <view class='CategoryItemImageLayout'>
+        <image class='CategoryItemImage' src='/images/P3.png' mode="aspectFit"></image>
+      </view>
       <text class='CategoryItemText'>找店铺</text>
     </view>
     <view class='CategoryItemLayout' bindtap='点击更多'>
-      <image class='CategoryItemImage' src='/images/P4.png' mode="aspectFit"></image>
+      <view class='CategoryItemImageLayout'>
+        <image class='CategoryItemImage' src='/images/P4.png' mode="aspectFit"></image>
+      </view>
       <text class='CategoryItemText'>更多</text>
     </view>
   </view>
