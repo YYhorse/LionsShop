@@ -7,7 +7,7 @@ Page({
     Enddates:'',
     PlaceClass:'',
     DetailText:'无',
-    image_photo: null
+    image_photo:[],
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({ title: '新建业务' });
@@ -42,19 +42,29 @@ Page({
   },
   拍摄照片: function (e) {
     var that = this
-    wx.chooseImage({
-      count: 1, // 默认9  
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
-      success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
-        var tempFilePaths = res.tempFilePaths;
-        console.log("图片地址：" + tempFilePaths);
-        that.setData({
-          image_photo: tempFilePaths[0],
-        })
-      }
-    })
+    if (this.data.image_photo.length<3){
+      wx.chooseImage({
+        count: 3, // 默认9  
+        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
+        success: function (res) {
+          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
+          var tempFilePaths = res.tempFilePaths;
+          console.log("图片地址：" + tempFilePaths);
+          that.data.image_photo = that.data.image_photo.concat(tempFilePaths);
+          that.setData({
+            image_photo: that.data.image_photo,
+          })
+        }
+      })
+    }
+    else{
+      wx.showToast({
+        title: '最多上传3张图片',
+        icon: 'loading',
+        duration: 1000
+      });  
+    }
   },
   点击发布:function(e){
     console.log(this.data.PlaceClass);

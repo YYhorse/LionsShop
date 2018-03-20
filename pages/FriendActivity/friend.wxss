@@ -39,15 +39,15 @@
   margin-left: 20rpx;
 }
 .ItemLayout2{
-  width: 40%;
+  width: 50%;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-left: 20rpx;
 }
 .BottomItemImage{
-  width:  40rpx;
-  height: 40rpx;
+  width:  30rpx;
+  height: 30rpx;
 }
 .BottomItemText{
   overflow:hidden;
@@ -56,7 +56,7 @@
   
   font-size: 25rpx;
   color: #d3d3d3;
-  margin-left: 5rpx;
+  margin-left: 10rpx;
 }
 .BottomLine{
   width: 100%;

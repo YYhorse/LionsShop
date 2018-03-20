@@ -71,11 +71,16 @@
   color: gray;
   margin-left: 50rpx;
 }
-.PlaceImage{
-   display: flex;
-   width: 40px;
-   height: 30px;
-   margin-right: 30rpx;
+.SingerEndLayout{
+  display: flex;
+  width: 10%;
+  flex-direction: row;
+  justify-content:flex-end;           
+}
+.SingerRightImage{
+  width:  40rpx;
+  height: 40rpx;
+  margin-top: 10rpx;
 }
 .PhotoShowLayout{
   display: flex;
@@ -90,11 +95,11 @@
   display: flex;
   width: 70rpx;
   height: 70rpx;
-  margin-left: 60rpx;
+  margin-left: 20rpx;
 }
 .ShowPhotoImage{
   display: flex;
-  width: 200rpx;
+  width: 20%;
   height: 200rpx;
   margin-left: 60rpx;
 }

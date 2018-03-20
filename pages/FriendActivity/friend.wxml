@@ -3,6 +3,10 @@
   <view data-numid="{{index}}" bindtap="点击指定活动">
     <!--顶部标题和状态-->
     <view class='TopLayout'>
+      <view class='ItemLayout'>
+        <image class='BottomItemImage' src='/images/people.png'></image>
+        <text class='BottomItemText'>{{item.contact_name}}</text>
+      </view>
       <text class='TitleText'>{{item.title}}</text>
       <image class='ActivityStatue' src="{{item.activity_state=='underway'?'/images/woking.png':'/images/over.png'}}"></image>
     </view>
@@ -10,10 +14,6 @@
     <image class='MiddleLayout' src="{{item.activity_images[0].current_url}}"></image>
     <!--底部信息-->
     <view class='BottomLayout'>
-      <view class='ItemLayout'>
-        <image class='BottomItemImage' src='/images/people.png'></image>
-        <text class='BottomItemText'>{{item.contact_name}}</text>
-      </view>
       <view class='ItemLayout2'>
         <image class='BottomItemImage' src='/images/place.png'></image>
         <text class='BottomItemText'>{{item.address_name}}</text>

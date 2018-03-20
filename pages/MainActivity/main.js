@@ -3,7 +3,7 @@ const app = getApp()
 Page({
   data: {
     DynamicAdUrl: null,
-    StaticAdUrl: 'https://m.360buyimg.com/mobilecms/jfs/t16072/18/2051412761/188193/849f56a8/5a8168a7N80e3e3ae.gif',
+    StaticAdUrl: null,
     ActivityInfo:null,
   },
   onLoad: function (options) {
