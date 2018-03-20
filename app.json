@@ -9,7 +9,8 @@
     "pages/HelpSearchActivity/helpsearch",
     "pages/MyWorkActivity/mywork",
     "pages/FriendActivity/friend",
-    "pages/FriendPushActivity/friendpush",        
+    "pages/FriendPushActivity/friendpush",
+    "pages/FriendPushBActivity/friendpushb",
     "pages/FriendDetailActivity/frienddetail"
   ],
   "window":{

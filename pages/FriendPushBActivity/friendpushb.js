@@ -2,48 +2,19 @@
 const app = getApp()
 Page({
   data: {
-    TitleText:'',
-    Dates:'',
-    Enddates:'',
-    BeginTime:'',
-    EndTime:'',
-    PlaceClass:'',
-    DetailText:'无',
+    TitleText: '',
+    ContextText: '',
     image_photo:[],
     PicSelect:0,
   },
   onLoad: function (options) {
-    wx.setNavigationBarTitle({ title: '发布活动' });
+    wx.setNavigationBarTitle({ title: '发布动态' });
   },
   输入标题: function (e) {
     this.setData({ TitleText: e.detail.value })
   },
-  输入详情: function (e) {
-    this.setData({ DetailText: e.detail.value })
-  },
-  监听日期变化:function(e){
-    this.setData({
-      Dates: e.detail.value
-    })
-  },
-  监听开始时间变化:function(e){
-    this.setData({
-      BeginTime: e.detail.value
-    })
-  },
-  监听结束时间变化: function (e) {
-    this.setData({
-      EndTime: e.detail.value
-    })
-  },
-  点击选择地点:function(e){
-    console.log("点击选择地点")
-    var that = this;
-    wx.chooseLocation({
-      success: function(res) {
-        that.setData({ PlaceClass: res })
-      },
-    })
+  输入内容: function (e) {
+    this.setData({ ContextText: e.detail.value })
   },
   拍摄照片: function (e) {
     var that = this
@@ -69,19 +40,17 @@ Page({
     }
   },
   点击发布:function(e){
-    // console.log(this.data.PlaceClass);
-    console.log(this.data.TitleText + "|"+ this.data.DetailText + this.data.PlaceClass.address + "|" + this.data.Enddates + "|" + this.data.BeginTime + "|" + this.data.EndTime);
-    // if (this.data.TitleText != '' && this.data.PlaceClass != '' && this.data.Enddates!=''){
-    //   if (this.data.image_photo == null)
-    //     wx.showToast({ title: '请上传一张图片', });
-    //   else{
-    //     var that = this;
-    //     wx.showLoading({ title: '提交中' });
-    //     this.UpdatePic();
-    //   }
-    // }
-    // else
-    //   wx.showToast({ title: '信息不能为空', });
+    if (this.data.TitleText != '' && this.data.ContextText != ''){
+      if (this.data.image_photo.length == 0)
+        wx.showToast({ title: '请上传一张图片', });
+      else{
+        var that = this;
+        wx.showLoading({ title: '提交中' });
+        this.UpdatePic();
+      }
+    }
+    else
+      wx.showToast({ title: '信息不能为空', });
   },
   UpdatePic:function(){
     var that = this;

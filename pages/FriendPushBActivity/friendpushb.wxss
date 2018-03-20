@@ -1,3 +1,8 @@
+.LineLayout{
+  width: 100%;
+  height: 8rpx;
+  background-color: #F0F0F0;
+}
 .InputTitleLayout{
   display: flex;
   width: 100%;
@@ -12,37 +17,12 @@
   color: black;
   font-weight:bold;
   margin-left: 40rpx;
-  width: 180rpx;
+  width: 90rpx;
 }
 .InputEditText{
   font-size: 16px;
   color: gray;
   margin-left: 20rpx;
-}
-.LineLayout{
-  width: 100%;
-  height: 8rpx;
-  background-color: #F0F0F0;
-}
-.LineLayout2{
-  width: 100%;
-  height: 30rpx;
-  background-color: #F0F0F0;
-}
-.TimeLayout{
-  display: flex;
-  width: 100%;
-  height: 60rpx;
-  flex-direction: column;
-  justify-content:center;
-  padding: 5px 0;
-  border-bottom: 1px solid #ededed;
-}
-.TimeText{
-  font-size: 16px;
-  color: black;
-  font-weight:bold;
-  margin-left: 40rpx;
 }
 .ServiceDetailLayout{
   display: flex;
@@ -59,24 +39,6 @@
   margin-left: 60rpx;
   margin-top: 30rpx;
   margin-bottom: 20rpx;
-}
-.PlaceText{
-  width: 70%;
-  display: flex;
-  font-size: 16px;
-  color: gray;
-  margin-left: 50rpx;
-}
-.SingerEndLayout{
-  display: flex;
-  width: 10%;
-  flex-direction: row;
-  justify-content:flex-end;           
-}
-.SingerRightImage{
-  width:  40rpx;
-  height: 40rpx;
-  margin-top: 10rpx;
 }
 .PhotoShowLayout{
   display: flex;

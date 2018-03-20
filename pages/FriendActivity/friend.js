@@ -83,8 +83,22 @@ Page({
     wx.navigateTo({ url: '/pages/FriendDetailActivity/frienddetail?activityJson=' + activityJson })
   },
   点击发布活动:function(e){
-    console.log('发布活动');
-    wx.navigateTo({ url: '/pages/FriendPushActivity/friendpush'});
+    wx.showActionSheet({
+      itemList: ['发布动态', '发布活动'],
+      success: function (res) {
+        if (res.tapIndex == 0){
+          //发布动态
+          wx.navigateTo({ url: '/pages/FriendPushBActivity/friendpushb' });
+        }
+        else {
+          //发布活动
+          wx.navigateTo({ url: '/pages/FriendPushActivity/friendpush' });
+        }
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })  
   },
   onShow: function () {
     if (getApp().FlashActivityState == true) {
