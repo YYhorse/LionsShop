@@ -17,6 +17,20 @@
   margin-top: 10rpx;
   margin-right: 10rpx;
 }
+.MiddenLayout{
+  display: flex;
+  width: 100%;
+  height: 200rpx;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.ShowPhotoImage{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: 2rpx;
+}
 .MiddleLayout{
   width: 98%;
   height: 400rpx;

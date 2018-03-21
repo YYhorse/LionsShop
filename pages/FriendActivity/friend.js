@@ -1,5 +1,3 @@
-//引入本地测试JSON数据
-var postData = require('../../data/friend_data.js');
 Page({
   data: {
     UserId: getApp().globalData.user_id,
