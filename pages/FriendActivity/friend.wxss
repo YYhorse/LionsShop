@@ -3,13 +3,24 @@
   width: 100%;
   height: 80rpx;
   flex-direction: row;
+  align-items: center;
+}
+.UserImage{
+  display: flex;
+  width:  65rpx;
+  height: 60rpx;
+  margin-left: 10rpx;
+}
+.UserName{
+  font-size: 25rpx;
+  color: #596891;
+  font-weight: bold;
+  width: 90%;
 }
 .TitleText{
   font-size: 30rpx;
   color: black;
   width: 90%;
-  margin-top: 20rpx;
-  margin-left: 20rpx;
 }
 .ActivityStatue{
   width: 10%;
@@ -22,12 +33,10 @@
   width: 100%;
   height: 200rpx;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
 }
 .ShowPhotoImage{
   display: flex;
-  width: 100%;
+  width: 50%;
   height: 100%;
   margin: 2rpx;
 }
@@ -46,11 +55,11 @@
   align-items: center;
 }
 .ItemLayout{
-  width: 20%;
+  width: 90%;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-left: 20rpx;
+  flex-direction: column;
+  justify-content: left;
+  margin-left: 15rpx;
 }
 .ItemLayout2{
   width: 50%;
