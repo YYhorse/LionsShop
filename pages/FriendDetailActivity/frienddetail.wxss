@@ -1,7 +1,16 @@
-.TopImage{
+.swiper {
+  height: 400rpx;
   width: 100%;
   display: flex;
 }
+.swiper image {
+  height: 100%;
+  width: 100%;
+}
+/* .TopImage{
+  width: 100%;
+  display: flex;
+} */
 .SingerLayout{
   display: flex;
   width: 100%;
@@ -28,6 +37,7 @@
    margin-right: 30rpx;
 }
 .LogoImage{
+  display: flex;
   width:  40rpx;
   height: 40rpx;
   margin-left: 20rpx;
@@ -37,14 +47,27 @@
   color: black;
   margin-left: 20rpx;
   font-weight: bold;
+  width: 180rpx;
 }
 .AddressContextText{
-  width: 50%;
+  width: 70%;
   font-size: 16px;
   color: gray;
-  margin-left: 20rpx;
+  margin-left: 40rpx;
+}
+.SingerEndLayout{
+  display: flex;
+  width: 10%;
+  flex-direction: row;
+  justify-content:flex-end;           
+}
+.SingerRightImage{
+  width:  40rpx;
+  height: 40rpx;
+  margin-top: 10rpx;
 }
 .LogoContextText{
+  width: 70%;
   font-size: 16px;
   color: gray;
   margin-left: 20rpx;
