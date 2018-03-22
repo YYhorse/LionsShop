@@ -8,6 +8,7 @@ Page({
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({ title: '我的' });
+    app.globalData.vipStatus = 'vip';
     if (app.globalData.vipStatus !='vip'){
       var ShowStatus = this.GetUserStatusInfo();
       this.setData({
@@ -39,6 +40,9 @@ Page({
     }
     else
       wx.showToast({  title: '请耐心等待验证'})
+  },
+  点击我的名片:function(e){
+    wx.navigateTo({ url: '/pages/MyCard/mycard' });
   },
   点击管理:function(e){
     // if (this.data.MyBusiness == "申请成为狮友"){
