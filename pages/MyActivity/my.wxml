@@ -4,17 +4,32 @@
   <text class='NiceNameText'>{{NiceName}}</text>
 </view>
 <view class='LineLayout'></view>
-<!--平台管理-->
-<view class='SingerLayout' bindtap='点击管理'>
-  <text class='SingerText'>{{MyBusiness}}</text>
+<!--狮友身份验证-->
+<view class="{{VipStatus!='vip'?'SingerLayout':'HideLayout'}}" bindtap='点击身份验证'>
+  <text class='SingerText'>{{CheckInfo}}</text>
   <view class='SingerEndLayout'>
     <image class='SingerRightImage' src='/images/right.png'></image>
   </view>
 </view>
-<!--关于我们-->
-<view class='SingerLayout'>
-  <text class='SingerText'>关于我们</text>
-  <view class='SingerEndLayout'>
-    <image class='SingerRightImage' src='/images/right.png'></image>
+<!--狮友信息管理-->
+<view class="{{VipStatus=='vip'?'ManageLayout':'HideLayout'}}">
+  <view class='SingerLayout' bindtap='点击我的名片'>
+    <text class='SingerText'>我的名片</text>
+    <view class='SingerEndLayout'>
+      <image class='SingerRightImage' src='/images/right.png'></image>
+    </view>
+  </view>
+  <view class='SingerLayout' bindtap='点击店铺管理'>
+    <text class='SingerText'>店铺管理</text>
+    <view class='SingerEndLayout'>
+      <image class='SingerRightImage' src='/images/right.png'></image>
+    </view>
+  </view>
+  <view class='SingerLayout' bindtap='点击产品管理'>
+    <text class='SingerText'>产品管理</text>
+    <view class='SingerEndLayout'>
+      <image class='SingerRightImage' src='/images/right.png'></image>
+    </view>
   </view>
 </view>
+

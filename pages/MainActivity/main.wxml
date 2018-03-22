@@ -38,15 +38,17 @@
   <!-- 中下固定广告页-->
    <image class='AdLayoutImage' src='{{StaticAdUrl}}'></image> 
   <!-- 底部推荐信息-->
-  <view class='BottomRectLayout'><text class='GroomActivityText'>推荐活动</text></view>
-  <block wx:for="{{ActivityInfo}}" wx:key="id"> 
-    <view class='ActivityInfoLayout' data-numid="{{index}}" bindtap="点击指定推荐活动">
+  <view class='BottomRectLayout'><text class='GroomActivityText'>推荐店铺</text></view>
+  <block wx:for="{{StoreInfo}}" wx:key="id"> 
+    <view class='ActivityInfoLayout' data-numid="{{index}}" bindtap="点击指定店铺">
       <!--推荐活动图片-->
-      <image class='ActivityImage' src='{{item.activity_images[0].current_url}}'></image>
+      <image class='ActivityImage' src='{{item.store_images[0].current_url}}'></image>
       <!--推荐活动内容-->
       <view class='ActivityContextLayout'>
-        <text class='ActivityTitleText'>{{item.title}}</text>
-        <text class='ActivityDetailText'>{{item.detail}}</text>
+        <view class='TopItemLayout'>
+          <text class='ActivityTitleText'>{{item.name}}</text>
+          <text class='ActivityDetailText'>{{item.description}}</text>
+        </view>
         <view class='BottomItemLayout'>
           <image class='BottomItemImage' src='/images/people.png'></image>
           <text class='BottomItemText'>{{item.contact_name}}</text>

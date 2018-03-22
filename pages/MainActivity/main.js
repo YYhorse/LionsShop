@@ -4,7 +4,7 @@ Page({
   data: {
     DynamicAdUrl: null,
     StaticAdUrl: null,
-    ActivityInfo:null,
+    StoreInfo:null,
   },
   onLoad: function (options) {
     this.获取首页信息();
@@ -24,7 +24,7 @@ Page({
           that.setData({
             DynamicAdUrl: Ares.data.image_infos,
             StaticAdUrl: Ares.data.advertisement_url,
-            ActivityInfo: Ares.data.activities,
+            StoreInfo: Ares.data.stores,
           })
         }
       },
@@ -91,11 +91,12 @@ Page({
     app.globalData.SelectItemCategory = '更多其他';
     wx.switchTab({ url: '/pages/HelpActivity/help' })
   },
-  点击指定推荐活动:function(e){
+  点击指定店铺:function(e){
     var Index = e.currentTarget.dataset.numid;
-    let activityJson = JSON.stringify(this.data.ActivityInfo[Index]);
-    console.log('点击事件' + Index);
-    console.log(activityJson);
-    wx.navigateTo({ url: '/pages/FriendDetailActivity/frienddetail?activityJson=' + activityJson })
+    console.log("点击店铺ID" + this.data.StoreInfo[Index].store_id);
+    // let activityJson = JSON.stringify(this.data.StoreInfo[Index]);
+    // console.log('点击事件' + Index);
+    // console.log(activityJson);
+    // wx.navigateTo({ url: '/pages/FriendDetailActivity/frienddetail?activityJson=' + activityJson })
   }
 })
