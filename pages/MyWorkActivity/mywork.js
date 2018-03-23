@@ -124,12 +124,13 @@ Page({
     this.setData({ Honor: e.detail.value })
   },
   点击提交信息: function (e) {
+    var that = this;
     console.log("姓名:" + this.data.RealName + "手机号:" + this.data.PhoneNumber + "服务队:" + this.data.ServiceTeam[this.data.ServiceTeamIndex] + "入会时间:" + this.data.JoinDats + "现任:" + this.data.CurrentPosition + "历任:" + this.data.PreviousPosition + "荣耀:" + this.data.Honor+"图片:"+this.data.image_photo);
     wx.showLoading({ title: '提交中' });
     wx.uploadFile({
-      url: getApp().globalData.HomeUrl + getApp().globalData.PushActivityUrl,
+      url: getApp().globalData.HomeUrl + getApp().globalData.PushUserUrl,
       filePath: that.data.image_photo,
-      name: 'user_images',
+      name: 'avatar',
       formData: {
         'user_id': app.globalData.user_id,
         'real_name': that.data.RealName,
@@ -145,13 +146,14 @@ Page({
         wx.hideLoading();
         if (Ares.data == '{"status_code":200}') {
           console.log('上传成功');
-          getApp().FlashActivityState = true;
           wx.showModal({
             title: '成功',
-            content: '活动提交成功!',
+            content: '验证信息提交成功!',
             success: function (res) {
-              if (res.confirm || res.cancel)
+              if (res.confirm || res.cancel){
+                app.globalData.vipStatus = 'wait_for_audit';
                 wx.navigateBack();
+              }
             }
           })
         }

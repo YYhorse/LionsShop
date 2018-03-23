@@ -1,11 +1,11 @@
 {
   "pages":[
-      "pages/MyShop/myshop",
+     
     "pages/MainActivity/main",
     "pages/MyServiceActivity/myservice",
     "pages/MyServiceDetailActivity/myservicedetail",
     "pages/MyActivity/my",
-
+  "pages/MyShop/myshop",
     "pages/MyCard/mycard",
     "pages/HelpActivity/help",
     "pages/HelpDetailActivity/helpdetail",

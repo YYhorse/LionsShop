@@ -8,8 +8,9 @@ Page({
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({ title: '我的' });
-    app.globalData.vipStatus = 'vip';
-    if (app.globalData.vipStatus !='vip'){
+  },
+  刷新显示:function(){
+    if (app.globalData.vipStatus != 'vip') {
       var ShowStatus = this.GetUserStatusInfo();
       this.setData({
         AvatarUrl: app.globalData.userInfo.avatarUrl,
@@ -18,7 +19,7 @@ Page({
         VipStatus: app.globalData.vipStatus,
       })
     }
-    else{
+    else {
       this.setData({
         AvatarUrl: app.globalData.userInfo.avatarUrl,
         NiceName: app.globalData.userInfo.nickName,
@@ -38,25 +39,19 @@ Page({
     if(app.globalData.vipStatus == 'tourist'){
       wx.navigateTo({ url: '/pages/MyWorkActivity/mywork' });
     }
-    else
+    else{
       wx.showToast({  title: '请耐心等待验证'})
+      app.GetUserInfo(); //待审核刷新
+    }
   },
   点击我的名片:function(e){
     wx.navigateTo({ url: '/pages/MyCard/mycard' });
   },
-  点击管理:function(e){
-    // if (this.data.MyBusiness == "申请成为狮友"){
-    //   wx.navigateTo({url: '/pages/MyWorkActivity/mywork'});
-    // }
-    // else if (this.data.MyBusiness == "业务管理"){
-    //   wx.navigateTo({ url: '/pages/MyWorkActivity/mywork' });
-    // }
-    // else
-    //   app.GetUserInfo(); //待审核刷新
+  点击店铺管理:function(e){
+    wx.navigateTo({ url: '/pages/MyShop/myshop' });
   },
-  // onShow:function(){
-  //   console.log("状态=" + app.globalData.vipStatus);
-  //   var ShowStatus = this.GetUserStatusInfo();
-  //   this.setData({MyBusiness: ShowStatus})
-  // }
+  onShow:function(){
+    console.log("状态=" + app.globalData.vipStatus);
+    this.刷新显示();
+  }
 })

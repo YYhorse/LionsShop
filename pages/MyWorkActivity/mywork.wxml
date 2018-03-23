@@ -23,13 +23,13 @@
   <!--选择服务队-->
   <view class='TimeLayout'>
     <picker value="{{ServiceTeamIndex}}" range="{{ServiceTeam}}" bindchange="监听服务队">  
-      <text class='TimeText'>选择服务队:</text>
+      <text class='TimeText'>服务队名</text>
       <text class='TimeText' placeholder='点击选取'>{{ServiceTeam[ServiceTeamIndex]}}</text>
     </picker>
   </view>
   <!--选择入会时间-->
   <view class='TimeLayout'>
-    <picker mode="date" value="{{JoinDats}}" start="2018-03-11" end="2020-03-11" bindchange="监听日期变化">  
+    <picker mode="date" value="{{JoinDats}}" start="2016-03-11" end="2020-03-11" bindchange="监听日期变化">  
       <text class='TimeText'>选择入会时间:</text>
       <text class='TimeText' placeholder='点击选取'>{{JoinDats}}</text>
     </picker>
