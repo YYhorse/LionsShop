@@ -1,4 +1,5 @@
 //获取应用实例
+var temp_product = { "product_info": [{ "product_id": "1", "product_name": "82年拉菲红酒", "product_detail": "这是82年珍藏版拉菲红酒", "product_original": "998.0", "product_vip": "666.0", "product_images": [{ "current_url": "https://lionsshop.cn/uploads/personal_dynamic_image/img_url/15/wx8289ef823b120966.o6zAJs9zMuO4UJGMEGveE_cR7jrM.4z9yiylrKqAs7be8bb1e87b5bb5e1781b69fbaecbe23.jpg" }] }, { "product_id": "2", "product_name": "92年拉菲红酒", "product_detail": "这是92年珍藏版拉菲红酒", "product_original": "888.0", "product_vip": "599.0", "product_images": [{ "current_url": "https://lionsshop.cn/uploads/personal_dynamic_image/img_url/15/wx8289ef823b120966.o6zAJs9zMuO4UJGMEGveE_cR7jrM.4z9yiylrKqAs7be8bb1e87b5bb5e1781b69fbaecbe23.jpg" }] }] };
 const app = getApp()
 Page({
   data: {
@@ -13,18 +14,15 @@ Page({
     PreviousPosition:'',
     Honor:'',
 
-    ConsumerClass: null,
-    BusinessClass: null,
-    OtherClasses: null,
-    MyService: null,
+    ProductList:'',
     PullDownRefreshStatus: false,
   },
   onLoad: function (options) {
     this.setData({ VipStatus: app.globalData.vipStatus });
     console.log("子状态:" + this.data.VipStatus);
     if (this.data.VipStatus == 'vip') {
-      wx.setNavigationBarTitle({ title: '我的业务' });
-      this.刷新个人业务();
+      wx.setNavigationBarTitle({ title: '产品管理' });
+      this.获取产品();
     }
     else{
       wx.setNavigationBarTitle({ title: '狮友身份验证' });
@@ -35,7 +33,7 @@ Page({
     if (getApp().FlashServiceState == true) {
       console.log('成功编辑后刷新')
       getApp().FlashServiceState = false;
-      this.刷新个人业务();
+      this.获取产品();
     }
   },
   // 下拉刷新  
@@ -43,7 +41,7 @@ Page({
     if (this.data.VipStatus == 'vip'){
       wx.showNavigationBarLoading();
       this.data.PullDownRefreshStatus = true;
-      this.刷新个人业务();
+      this.获取产品();
     }
   },
   获取服务队信息:function(){
@@ -66,28 +64,6 @@ Page({
         },
         fail: function () { wx.hideLoading(); wx.showToast({ title: '获取服务队信息错误'}) }
       })
-  },
-  刷新个人业务: function () {
-    var that = this;
-    wx.request({
-      url: getApp().globalData.HomeUrl + getApp().globalData.GetServiceUrl,
-      data: { "user_id": app.globalData.user_id },
-      method: 'GET',
-      success: function (Ares) {
-        console.log(Ares.data);
-        if (that.data.PullDownRefreshStatus) {
-          that.data.PullDownRefreshStatus = false;
-          wx.hideNavigationBarLoading();       // 隐藏导航栏loading  
-          wx.stopPullDownRefresh();
-        }
-        if (Ares.data.status_code == 200) {
-          that.setData({ MyServices: Ares.data.stores })
-        }
-        else
-          wx.showToast({ title: '无个人业务', })
-      },
-      fail: function () { wx.showToast({ title: '获取失败,服务器异常', }) }
-    })
   },
   上传照片:function(e){
     var that = this
@@ -170,27 +146,34 @@ Page({
       },
       fail: function () { wx.hideLoading(); wx.showToast({ title: '获取失败,服务器异常', }) }
     })    
-    // wx.showLoading({ title: '提交中' }),
-    //   wx.request({
-    //     url: getApp().globalData.HomeUrl + getApp().globalData.ApplyRegisterUrl,
-    //     data: { "real_name": this.data.RealName, "phone_number": this.data.PhoneNumber, "detail": this.data.UserDetail, "user_id": app.globalData.user_id },
-    //     method: 'POST',
-    //     success: function (Ares) {
-    //       console.log(Ares.data);
-    //       if (Ares.data.status_code == 200) {
-    //         //---申请成功----//
-    //         wx.showToast({ title: '申请成功', });
-    //         wx.navigateBack();
-    //         app.globalData.vipStatus = "wait_for_audit";
-    //       }
-    //       else {
-    //         wx.hideLoading();
-    //         wx.showToast({ title: '申请失败,接口返回' + Ares.data.status_code, });
-    //       }
-    //     },
-    //     fail: function () { wx.hideLoading(); wx.showToast({ title: '登陆失败,服务器异常', }) }
-    //   })
   },
+  ///////////////////////////////////////////////////////////////////////////////////////////
+  //////////////                      产品管理                                 ///////////////
+  ///////////////////////////////////////////////////////////////////////////////////////////
+  获取产品: function () {
+    // wx.request({
+    //   url: getApp().globalData.HomeUrl + getApp().globalData.GetServiceUrl,
+    //   data: { "user_id": app.globalData.user_id },
+    //   method: 'GET',
+    //   success: function (Ares) {
+    //     console.log(Ares.data);
+    //     if (that.data.PullDownRefreshStatus) {
+    //       that.data.PullDownRefreshStatus = false;
+    //       wx.hideNavigationBarLoading();       // 隐藏导航栏loading  
+    //       wx.stopPullDownRefresh();
+    //     }
+    //     if (Ares.data.status_code == 200) {
+    //       that.setData({ MyServices: Ares.data.stores })
+    //     }
+    //     else
+    //       wx.showToast({ title: '无个人业务', })
+    //   },
+    //   fail: function () { wx.showToast({ title: '获取失败,服务器异常', }) }
+    // })
+    var that = this;
+    that.setData({ ProductList: temp_product.product_info })
+  },
+
   点击指定业务: function (e) {
     var Index = e.currentTarget.dataset.numid;
     let MyServiceJson = JSON.stringify(this.data.MyServices[Index]);

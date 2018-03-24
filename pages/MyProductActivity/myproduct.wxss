@@ -113,7 +113,7 @@
 }
 .ServicesSingerLayout{
   display: flex;
-  width: 100%;
+  width: 97%;
   height: 200rpx;
   flex-direction: row;
   background-color: white;
@@ -122,14 +122,17 @@
 }
 .ServiceImageView{
   display: flex;
-  width: 40%;
+  width: 50%;
   height: 100%;
+  margin-left: 10rpx;
 }
+
 .ServicesContextLayout{
   display: flex;
-  width: 40%;
-  height: 100%;
+  width: 50%;
+  height: 200rpx;
   flex-direction: column;
+  margin-left: 10rpx;
 }
 .ServiceTitleText{
   overflow:hidden;

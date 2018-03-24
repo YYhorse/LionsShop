@@ -5,7 +5,7 @@
   background-color: #F3F5F7;
 }
 .swiper {
-  height: 400rpx;
+  height: 300rpx;
   width: 100%;
   display: flex;
 }

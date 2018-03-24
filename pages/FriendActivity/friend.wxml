@@ -8,12 +8,12 @@
         <text class='UserName'>{{item.contact_name}}</text>
         <text class='TitleText'>{{item.title}}</text>
       </view>
-      <image class='ActivityStatue' src="{{item.activity_state=='underway'?'/images/woking.png':'/images/over.png'}}"></image>
+      <image class="{{item.start_at!=null?'ActivityStatue':'HideBottomLayout'}}" src="{{item.activity_state=='underway'?'/images/woking.png':'/images/over.png'}}"></image>
     </view>
     <!--中部图片-->
     <view class='MiddenLayout'>
       <block wx:for="{{item.activity_images}}" wx:for-item="son" wx:key="index">
-        <image class='ShowPhotoImage' src='{{son.current_url}}'  mode="aspectFit" bindtap='浏览图片'></image>
+        <image class='ShowPhotoImage' src='{{son.current_url}}' data-src="{{son.current_url}}" mode="aspectFit" bindtap="{{item.start_at==null?'浏览图片':''}}"></image>
       </block>
     </view>
     <!--底部信息-->

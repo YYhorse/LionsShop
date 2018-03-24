@@ -11,7 +11,8 @@ Page({
     addressLongitude: '',
     shopDiscount:'无',
     Index: 0,
-    Industries: ['请选择行业'],  
+    Industries: ['请选择行业'],
+    IndustriesCode:[],  
     shop_images:[],
     image_photo: [],
     PicSelect: 0,
@@ -53,10 +54,16 @@ Page({
         wx.stopPullDownRefresh();
         if (Ares.statusCode == 200) {
           var temp = [];
-          temp.push("请选择行业");
-          for (var i = 0; i < Ares.data.industries.length;i++)
+          var tempCode = [];
+          // temp.push("请选择行业");
+          for (var i = 0; i < Ares.data.industries.length;i++){
             temp.push(Ares.data.industries[i].name);
-          that.setData({ Industries: temp });
+            tempCode.push(Ares.data.industries[i].code);
+          }
+          that.setData({ 
+            Industries: temp,
+            IndustriesCode: tempCode,
+          });
           that.获取店铺信息();
         }
       },
@@ -76,8 +83,20 @@ Page({
         method: 'GET',
         success: function (Ares) {
           console.log(Ares.data);
+          wx.hideLoading();
           if (Ares.data.status_code == 200) {
-            wx.hideLoading();
+            if (Ares.data.industry_code!=""){
+              for (var i = 0; i < that.data.IndustriesCode.length;i++){
+                if (Ares.data.industry_code == that.data.IndustriesCode[i]){
+                  that.data.Index = i;
+                  console.log('找到行业' + that.data.Industries[that.data.Index]);
+                  that.setData({
+                    Index: that.data.Index,
+                    // IndustriesCode: that.data.IndustriesCode[that.data.Index],
+                  });
+                }
+              }
+            }
             that.setData({
               shopCode: Ares.data.code,
               shopName: Ares.data.shop_name,
@@ -90,8 +109,13 @@ Page({
               shop_images: Ares.data.shop_images
             })
           }
+          else if (Ares.data.status_code == 605){
+            wx.showModal({
+              title: '请创建店铺',
+              content: '店铺无信息，请填写信息'
+            })
+          }
           else {
-            wx.hideLoading();
             wx.showToast({ title: '获取服务队信息错误,接口返回' + Ares.data.status_code, });
           }
         },
@@ -129,13 +153,17 @@ Page({
   },
   点击更新:function(e){
     console.log(this.data.shopName + "|" + this.data.shopDetail + this.data.addressName);
+    console.log("id=" + this.data.Index+ this.data.Industries[this.data.Index]+"|"+this.data.IndustriesCode[this.data.Index])
     console.log(this.data.image_photo);
     if (this.data.shopName != null && this.data.addressName != null 
       && this.data.Industries[this.data.Index] !='请选择行业') {
-      if (this.data.image_photo.length==0)
-        wx.showToast({ title: '请上传一张图片', });
+      if (this.data.image_photo.length==0){
+        //wx.showToast({ title: '请上传一张图片', });
+        console.log('无图片更新数据');
+        wx.showLoading({ title: '提交中' });
+        this.UpdateShopInfo();
+      }
       else {
-        var that = this;
         wx.showLoading({ title: '提交中' });
         this.UpdateFirstPic();
       }
@@ -143,6 +171,51 @@ Page({
     else
       wx.showToast({ title: '信息不能为空', });
 
+  },
+  UpdateShopInfo:function(){
+    var that = this;
+    wx.request({
+      url: getApp().globalData.HomeUrl + getApp().globalData.UpdataStoreNoImage,
+      data: {
+        'user_id': getApp().globalData.user_id,
+        'store_code': that.data.shopCode,
+        'industry_code': that.data.IndustriesCode[that.data.Index],
+        'shop_name': that.data.shopName,
+        'shop_detail': that.data.shopDetail,
+        'address_name': that.data.addressName,
+        'address_detail': that.data.addressDetail,
+        'latitude': that.data.addressLatitude,
+        'longitude': that.data.addressLongitude,
+        'shop_discount': that.data.shopDiscount
+      },
+      method: 'POST',
+      success: function (Ares) {
+        console.log(Ares.data);
+        if (Ares.data.status_code == 200) {
+          wx.hideLoading();
+          console.log('上传完成');
+          wx.showModal({
+            title: '成功',
+            content: '提交成功!',
+            success: function (res) {
+              if (res.confirm || res.cancel) wx.navigateBack();
+            }
+          })
+        }
+        else {
+          wx.hideLoading();
+          wx.showModal({
+            title: '错误提示',
+            content: '接口返回错误=' + Ares.data.state_code,
+            success: function (res) {
+              if (res.confirm || res.cancel)
+                wx.navigateBack();
+            }
+          })
+        }
+      },
+      fail: function () { wx.hideLoading(); wx.showToast({ title: '获取服务队信息错误' }) }
+    })
   },
   UpdateFirstPic: function () {
     var that = this;
@@ -152,6 +225,8 @@ Page({
       name: 'shop_images',
       formData: {
         'user_id': getApp().globalData.user_id,
+        'store_code': that.data.shopCode,
+        'industry_code': that.data.IndustriesCode[that.data.Index],
         'shop_name': that.data.shopName,
         'shop_detail': that.data.shopDetail,
         'address_name': that.data.addressName,
@@ -164,6 +239,7 @@ Page({
         console.log(Ares.data);
         var json = JSON.parse(Ares.data);
         if (json.status_code == 200) {
+          that.data.shopCode = json.store_code;
           that.data.PicSelect = that.data.PicSelect + 1;
           console.log("上传第" + that.data.PicSelect + "张成功!")
           if (that.data.PicSelect == that.data.image_photo.length) {
@@ -192,13 +268,18 @@ Page({
           })
         }
       },
-      fail: function () { wx.showToast({ title: '获取失败,服务器异常', }) }
+      fail: function () {
+        wx.showModal({
+          title: '错误提示',
+          content: '服务器返回错误',
+        }) 
+      }
     })
   },
   UpdateOtherPic: function () {
     var that = this;
     wx.uploadFile({
-      url: getApp().globalData.HomeUrl + getApp().globalData.UpdataStoreInfoUrl,
+      url: getApp().globalData.HomeUrl + getApp().globalData.UpdataStoreImage,
       filePath: that.data.image_photo[that.data.PicSelect],
       name: 'shop_images',
       formData: { 'user_id': getApp().globalData.user_id, 'store_code': that.data.shopCode },

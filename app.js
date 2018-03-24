@@ -72,15 +72,17 @@ App({
     PushUserUrl:'/api/v1/enter_applies',
     GetHomeUrl:'/api/v1/users/home_page',
     GetCategrayUrl:'/api/v1/industry_types',
+    GetIndustriesUrl: '/api/v1/industries',     //获取行业信息   【我的-店铺管理】
     GetStoreInfoUrl: '/api/v1/stores',         //获取店铺信息  【我的-店铺管理】
-    GetIndustriesUrl:'/api/v1/industries',     //获取行业信息   【我的-店铺管理】
     UpdataStoreInfoUrl:'/api/v1/stores',      //更新店铺信息    【我得-店铺管理】
+    UpdataStoreImage: '/api/v1/stores/cycle_uploader',   //更新店铺图片  第2,3张调用    【我得-店铺管理】
+    UpdataStoreNoImage: '/api/v1/stores/noimage_update',   //更新店铺信息 无图片情况 【我的-店铺管理】
+    ApplyServiceUrl: '/api/v1/stores',
+    GetServiceUrl: '/api/v1/stores',
     GetTypeUrl:'/api/v1/stores/service_index',  
     GetServiceTeamUrl:'/api/v1/service_teams/all_service_teams', 
     GetUserAppliesUrl:'/api/v1/enter_applies', 
     ApplyRegisterUrl:'/api/v1/enter_applies',
-    ApplyServiceUrl:'/api/v1/stores',
-    GetServiceUrl:'/api/v1/stores',
     DelServiceUrl:'/api/v1/stores/destroy_store',
     EditServiceUrl:'/api/v1/stores/edit_store',
     SearchServiceUrl: '/api/v1/stores/hunt_for',

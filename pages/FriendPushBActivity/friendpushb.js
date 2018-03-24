@@ -6,6 +6,7 @@ Page({
     ContextText: '',
     image_photo:[],
     PicSelect:0,
+    PersonalId:'',
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({ title: '发布动态' });
@@ -46,13 +47,13 @@ Page({
       else{
         var that = this;
         wx.showLoading({ title: '提交中' });
-        this.UpdatePic();
+        this.UpdateFirstPic();
       }
     }
     else
       wx.showToast({ title: '信息不能为空', });
   },
-  UpdatePic:function(){
+  UpdateFirstPic: function () {
     var that = this;
     wx.uploadFile({
       url: getApp().globalData.HomeUrl + getApp().globalData.PushMessageUrl,
@@ -65,9 +66,11 @@ Page({
       },
       success: function (Ares) {
         console.log(Ares.data);
-        that.data.PicSelect = that.data.PicSelect+1;
-        if (Ares.data == '{"status_code":200}') {
-          console.log("上传第" + that.data.PicSelect + "张成功!")
+        var json = JSON.parse(Ares.data);
+        if (json.status_code == 200) {
+          that.data.PersonalId = json.personal_dynamic_id;
+          that.data.PicSelect = that.data.PicSelect + 1;
+          console.log("上传第" + that.data.PicSelect + "张成功!" + '返回ID=' + that.data.PersonalId);
           if (that.data.PicSelect == that.data.image_photo.length) {
             wx.hideLoading();
             console.log('上传完成');
@@ -75,14 +78,11 @@ Page({
             wx.showModal({
               title: '成功',
               content: '提交成功!',
-              success: function (res) {
-                if (res.confirm || res.cancel)
-                  wx.navigateBack();
-              }
+              success: function (res) { if (res.confirm || res.cancel) wx.navigateBack();}
             })
           }
           else
-            that.UpdatePic();   //继续上传
+            that.UpdateOtherPic();        //继续上传
         }
         else {
           console.log("上传第" + that.data.PicSelect + "张失败!")
@@ -97,6 +97,49 @@ Page({
         }
       },
       fail: function () { wx.showToast({ title: '获取失败,服务器异常', }) }
-    })    
+    })
+  },
+  UpdateOtherPic: function () {
+    var that = this;
+    wx.uploadFile({
+      url: getApp().globalData.HomeUrl + getApp().globalData.PushMessageUrl,
+      filePath: that.data.image_photo[that.data.PicSelect],
+      name: 'activity_images',
+      formData: { 
+        'user_id': getApp().globalData.user_id,
+        'personal_dynamic_id': that.data.PersonalId, },
+      success: function (Ares) {
+        console.log(Ares.data);
+        var json = JSON.parse(Ares.data);
+        that.data.PicSelect = that.data.PicSelect + 1;
+        if (json.status_code == 200) {
+          console.log("上传第" + that.data.PicSelect + "张成功!")
+          if (that.data.PicSelect == that.data.image_photo.length) {
+            wx.hideLoading();
+            console.log('上传完成');
+            getApp().FlashActivityState = true;
+            wx.showModal({
+              title: '成功',
+              content: '提交成功!',
+              success: function (res) { if (res.confirm || res.cancel)  wx.navigateBack();  }
+            })
+          }
+          else
+            that.UpdateOtherPic();   //继续上传
+        }
+        else {
+          console.log("上传第" + that.data.PicSelect + "张失败!")
+          wx.showModal({
+            title: '错误提示',
+            content: '接口返回错误=' + Ares.data.state_code,
+            success: function (res) {
+              if (res.confirm || res.cancel)
+                wx.navigateBack();
+            }
+          })
+        }
+      },
+      fail: function () { wx.showToast({ title: '获取失败,服务器异常', }) }
+    })
   }
 })
