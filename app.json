@@ -1,16 +1,15 @@
 {
   "pages":[
-     
     "pages/MainActivity/main",
     "pages/MyServiceActivity/myservice",
     "pages/MyServiceDetailActivity/myservicedetail",
     "pages/MyActivity/my",
-  "pages/MyShop/myshop",
+    "pages/MyShop/myshop",
     "pages/MyCard/mycard",
+    "pages/MyProductActivity/myproduct",
     "pages/HelpActivity/help",
     "pages/HelpDetailActivity/helpdetail",
     "pages/HelpSearchActivity/helpsearch",
-    "pages/MyWorkActivity/mywork",
     "pages/FriendActivity/friend",
     "pages/FriendPushActivity/friendpush",
     "pages/FriendPushBActivity/friendpushb",

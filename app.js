@@ -72,6 +72,9 @@ App({
     PushUserUrl:'/api/v1/enter_applies',
     GetHomeUrl:'/api/v1/users/home_page',
     GetCategrayUrl:'/api/v1/industry_types',
+    GetStoreInfoUrl: '/api/v1/stores',         //获取店铺信息  【我的-店铺管理】
+    GetIndustriesUrl:'/api/v1/industries',     //获取行业信息   【我的-店铺管理】
+    UpdataStoreInfoUrl:'/api/v1/stores',      //更新店铺信息    【我得-店铺管理】
     GetTypeUrl:'/api/v1/stores/service_index',  
     GetServiceTeamUrl:'/api/v1/service_teams/all_service_teams', 
     GetUserAppliesUrl:'/api/v1/enter_applies', 
@@ -83,6 +86,7 @@ App({
     SearchServiceUrl: '/api/v1/stores/hunt_for',
     GetActivityUrl:'/api/v1/activities',
     PushActivityUrl:'/api/v1/activities',
+    PushMessageUrl:'/api/v1/personal_dynamics',
     DelActivityUrl:'/api/v1/activities/destroy_activity',
   }
 })

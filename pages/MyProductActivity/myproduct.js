@@ -194,7 +194,6 @@ Page({
   点击指定业务: function (e) {
     var Index = e.currentTarget.dataset.numid;
     let MyServiceJson = JSON.stringify(this.data.MyServices[Index]);
-    // console.log('点击事件' + Index);
     console.log(MyServiceJson);
     wx.navigateTo({ url: '/pages/MyServiceDetailActivity/myservicedetail?serviceJson=' + MyServiceJson })
   },

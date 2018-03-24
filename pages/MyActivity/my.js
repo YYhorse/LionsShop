@@ -37,7 +37,7 @@ Page({
   },
   点击身份验证:function(e){
     if(app.globalData.vipStatus == 'tourist'){
-      wx.navigateTo({ url: '/pages/MyWorkActivity/mywork' });
+      wx.navigateTo({ url: '/pages/MyProductActivity/myproduct' });
     }
     else{
       wx.showToast({  title: '请耐心等待验证'})
@@ -49,6 +49,9 @@ Page({
   },
   点击店铺管理:function(e){
     wx.navigateTo({ url: '/pages/MyShop/myshop' });
+  },
+  点击产品管理:function(e){
+    wx.navigateTo({ url: '/pages/MyProductActivity/myproduct' });
   },
   onShow:function(){
     console.log("状态=" + app.globalData.vipStatus);

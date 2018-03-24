@@ -94,7 +94,7 @@ Page({
         'user_id': getApp().globalData.user_id,
         'title': that.data.TitleText,
         'start_at': that.data.Dates,
-        'end_at': that.data.Dates,//that.data.Enddates,
+        'time_interval': that.data.BeginTime + '-' + that.data.EndTime,
         'address_name': that.data.PlaceClass.name,
         'address_detail': that.data.PlaceClass.address,
         'latitude': that.data.PlaceClass.latitude,

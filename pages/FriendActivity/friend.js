@@ -98,6 +98,11 @@ Page({
       }
     })  
   },
+  浏览图片:function(e){
+    var that = this;
+    var Index = e.currentTarget.dataset.numid;
+    console.log(Index);
+  },
   onShow: function () {
     if (getApp().FlashActivityState == true) {
       console.log('成功发布活动后刷新')

@@ -54,13 +54,6 @@
   <button class='AppleBtn' type="warn" bindtap='点击提交信息'>提交信息</button>
 </view>
 
-
-
-
-
-
-
-
 <!--是会员显示业务-->
 <view class="{{VipStatus=='vip'?'ServiceLayout':'HideView'}}">
   <!--展示个人业务-->

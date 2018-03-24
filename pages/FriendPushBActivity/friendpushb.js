@@ -55,18 +55,12 @@ Page({
   UpdatePic:function(){
     var that = this;
     wx.uploadFile({
-      url: getApp().globalData.HomeUrl + getApp().globalData.PushActivityUrl,
+      url: getApp().globalData.HomeUrl + getApp().globalData.PushMessageUrl,
       filePath: that.data.image_photo[that.data.PicSelect],
       name: 'activity_images',
       formData: {
         'user_id': getApp().globalData.user_id,
         'title': that.data.TitleText,
-        'start_at': that.data.Dates,
-        'end_at': that.data.Enddates,
-        'address_name': that.data.PlaceClass.name,
-        'address_detail': that.data.PlaceClass.address,
-        'latitude': that.data.PlaceClass.latitude,
-        'longitude': that.data.PlaceClass.longitude,
         'detail': that.data.DetailText,
       },
       success: function (Ares) {
@@ -87,9 +81,8 @@ Page({
               }
             })
           }
-          else{
+          else
             that.UpdatePic();   //继续上传
-          }
         }
         else {
           console.log("上传第" + that.data.PicSelect + "张失败!")
