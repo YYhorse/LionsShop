@@ -15,7 +15,10 @@ Page({
     Honor:'',
 
     ProductList:'',
+    current_page: 0,
+    Max_page: 100,
     PullDownRefreshStatus: false,
+    PullUpRefreshStatus: false,
   },
   onLoad: function (options) {
     this.setData({ VipStatus: app.globalData.vipStatus });
@@ -30,9 +33,9 @@ Page({
     }
   },
   onShow: function () {
-    if (getApp().FlashServiceState == true) {
+    if (getApp().globalData.FlashProductState == true) {
       console.log('成功编辑后刷新')
-      getApp().FlashServiceState = false;
+      getApp().globalData.FlashProductState = false;
       this.获取产品();
     }
   },
@@ -41,8 +44,17 @@ Page({
     if (this.data.VipStatus == 'vip'){
       wx.showNavigationBarLoading();
       this.data.PullDownRefreshStatus = true;
+      this.data.current_page = 0;
       this.获取产品();
     }
+  },
+  // 上拉加载更多
+  onReachBottom: function () {
+    console.log("上拉加载");
+    wx.showNavigationBarLoading();
+    this.data.PullUpRefreshStatus = true;
+    this.data.current_page = this.data.current_page + 1;
+    this.获取产品();
   },
   获取服务队信息:function(){
     var that = this;
@@ -151,36 +163,62 @@ Page({
   //////////////                      产品管理                                 ///////////////
   ///////////////////////////////////////////////////////////////////////////////////////////
   获取产品: function () {
-    // wx.request({
-    //   url: getApp().globalData.HomeUrl + getApp().globalData.GetServiceUrl,
-    //   data: { "user_id": app.globalData.user_id },
-    //   method: 'GET',
-    //   success: function (Ares) {
-    //     console.log(Ares.data);
-    //     if (that.data.PullDownRefreshStatus) {
-    //       that.data.PullDownRefreshStatus = false;
-    //       wx.hideNavigationBarLoading();       // 隐藏导航栏loading  
-    //       wx.stopPullDownRefresh();
-    //     }
-    //     if (Ares.data.status_code == 200) {
-    //       that.setData({ MyServices: Ares.data.stores })
-    //     }
-    //     else
-    //       wx.showToast({ title: '无个人业务', })
-    //   },
-    //   fail: function () { wx.showToast({ title: '获取失败,服务器异常', }) }
-    // })
     var that = this;
-    that.setData({ ProductList: temp_product.product_info })
+    wx.request({
+      url: getApp().globalData.HomeUrl + getApp().globalData.GetProductsUrl,
+      data: { "user_id": app.globalData.user_id, "store_code": app.globalData.store_code, "current_page": that.data.current_page},
+      method: 'GET',
+      success: function (Ares) {
+        console.log(Ares.data);
+        if (Ares.data.status_code == 200) {
+          if (that.data.PullUpRefreshStatus) {
+            //上拉加载更多
+            var temp_list = that.data.ProductList;
+            for (var i = 0; i < Ares.data.products.length; i++)
+              temp_list.push(Ares.data.products[i]);
+
+            console.log(temp_list);  
+            that.setData({ ProductList: temp_list })
+          }
+          else {
+            //下拉刷新 或者 正常加载
+            that.setData({ ProductList: Ares.data.products })
+            that.setData({ ProductList: that.data.ProductList })
+          }
+        }
+        else if (Ares.data.status_code == 605){
+          wx.showToast({ title: '无更多产品', })
+          if (that.data.current_page < that.data.Max_page)
+            that.data.Max_page = that.data.current_page;
+          else
+            that.data.current_page--;
+        }
+        else{
+          wx.showModal({
+            title: '接口错误',
+            content: '获取产品接口错误'+Ares.data
+          })
+        }
+        //--------加载条隐藏-------//
+        if (that.data.PullDownRefreshStatus || that.data.PullUpRefreshStatus) {
+          that.data.PullUpRefreshStatus = false;
+          that.data.PullDownRefreshStatus = false;
+          // 隐藏导航栏loading  
+          wx.hideNavigationBarLoading();
+          // 当处理完数据刷新后，wx.stopPullDownRefresh可以停止当前页面的下拉刷新  
+          wx.stopPullDownRefresh();
+        }
+      },
+      fail: function () { wx.showToast({ title: '获取产品失败,服务器异常', }) }
+    })
   },
 
-  点击指定业务: function (e) {
+  点击指定产品: function (e) {
     var Index = e.currentTarget.dataset.numid;
-    let MyServiceJson = JSON.stringify(this.data.MyServices[Index]);
-    console.log(MyServiceJson);
-    wx.navigateTo({ url: '/pages/MyServiceDetailActivity/myservicedetail?serviceJson=' + MyServiceJson })
+    let ProductJson = JSON.stringify(this.data.ProductList[Index]);
+    wx.navigateTo({ url: '/pages/MyProductDetailActivity/myproductdetail?productJson=' + ProductJson })
   },
-  点击发布新业务: function (e) {
-    wx.navigateTo({ url: '/pages/MyServiceActivity/myservice' });
+  点击发布产品: function (e) {
+    wx.navigateTo({ url: '/pages/MyProductNewActivity/myproductnew' });
   },
 })

@@ -48,7 +48,16 @@
   display: flex;
   width: 70%;
   flex-direction: row;
-  justify-content:flex-end;           
+  justify-content:flex-end;
+  align-items: center;           
+}
+.SingerEndTxt{
+  font-size: 13px;
+  color: #101010;
+  margin-right: 10rpx;
+}
+.HideText{
+  display: none;
 }
 .SingerContextText{
   font-size: 20px;

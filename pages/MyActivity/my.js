@@ -5,6 +5,7 @@ Page({
     NiceName:"无",
     CheckInfo:"",
     VipStatus:'',
+    ShopStatue:'',
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({ title: '我的' });
@@ -24,6 +25,7 @@ Page({
         AvatarUrl: app.globalData.userInfo.avatarUrl,
         NiceName: app.globalData.userInfo.nickName,
         VipStatus: app.globalData.vipStatus,
+        ShopStatue: app.globalData.store_state,
       })
     }
   },
@@ -48,10 +50,16 @@ Page({
     wx.navigateTo({ url: '/pages/MyCard/mycard' });
   },
   点击店铺管理:function(e){
-    wx.navigateTo({ url: '/pages/MyShop/myshop' });
+    if (app.globalData.store_state == 'wait_for_audit')
+      app.GetUserInfo(); //待审核刷新
+    else
+      wx.navigateTo({ url: '/pages/MyShop/myshop' });
   },
   点击产品管理:function(e){
-    wx.navigateTo({ url: '/pages/MyProductActivity/myproduct' });
+    if (app.globalData.store_state =='wait_for_audit')
+      wx.showToast({ title: '请等待店铺审核'});
+    else
+      wx.navigateTo({ url: '/pages/MyProductActivity/myproduct' });
   },
   onShow:function(){
     console.log("状态=" + app.globalData.vipStatus);

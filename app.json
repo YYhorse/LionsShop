@@ -1,14 +1,19 @@
 {
   "pages":[
+     
     "pages/MainActivity/main",
-    "pages/MyServiceActivity/myservice",
-    "pages/MyServiceDetailActivity/myservicedetail",
     "pages/MyActivity/my",
     "pages/MyShop/myshop",
     "pages/MyCard/mycard",
+    "pages/ProductShow/productshow",
+    "pages/StoreActivity/store",
     "pages/MyProductActivity/myproduct",
+    "pages/MyProductNewActivity/myproductnew",
+    "pages/MyProductDetailActivity/myproductdetail",
     "pages/HelpActivity/help",
-    "pages/HelpDetailActivity/helpdetail",
+    "pages/FindPeopleActivity/findpeople",
+    "pages/FindProductActivity/findproduct",
+    "pages/FindDiscountActivity/finddiscount",
     "pages/HelpSearchActivity/helpsearch",
     "pages/FriendActivity/friend",
     "pages/FriendPushActivity/friendpush",
@@ -37,7 +42,7 @@
         "selectedIconPath": "images/help_on.png",
         "iconPath": "images/help_off.png",
         "pagePath": "pages/HelpActivity/help",
-        "text": "狮友帮"
+        "text": "分类"
       },
       {
         "selectedIconPath": "images/friend_on.png",

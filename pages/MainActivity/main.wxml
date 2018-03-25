@@ -22,11 +22,11 @@
       </view>
       <text class='CategoryItemText'>找优惠</text>
     </view>
-    <view class='CategoryItemLayout' bindtap='点击找店铺'>
+    <view class='CategoryItemLayout' bindtap='点击找产品'>
       <view class='CategoryItemImageLayout'>
         <image class='CategoryItemImage' src='/images/P3.png' mode="aspectFit"></image>
       </view>
-      <text class='CategoryItemText'>找店铺</text>
+      <text class='CategoryItemText'>找产品</text>
     </view>
     <view class='CategoryItemLayout' bindtap='点击更多'>
       <view class='CategoryItemImageLayout'>
