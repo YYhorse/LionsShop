@@ -55,47 +55,27 @@
 </view>
 
 
-
-
-
-
-
-
 <!--是会员显示业务-->
 <view class="{{VipStatus=='vip'?'ServiceLayout':'HideView'}}">
-  <!--展示个人业务-->
-  <block wx:for="{{MyServices}}" wx:key="store_code">
-    <view class='ServicesSingerLayout' data-numid="{{index}}" bindtap="点击指定业务">
-      <!--个人业务图片-->
-      <image class='ServiceImageView' src='{{item.picinfo[0].current_url}}'></image>
-      <!--显示个人业务信息-->
+  <!--展示产品-->
+  <block wx:for="{{ProductList}}" wx:key="store_code">
+    <view class='ServicesSingerLayout' data-numid="{{index}}" bindtap="点击指定产品">
+      <!--产品图片-->
+      <image class='ServiceImageView' src='{{item.product_images[0].current_url}}'></image>
+      <!--显示产品信息-->
       <view class='ServicesContextLayout'>
-        <text class='ServiceTitleText'>{{item.service_name}}</text>
-        <text class='ServiceDetailText'>{{item.service_detail}}</text>
-        <view class='ServiceContactLayout'>
-          <view class='BottomItemLayout'>
-            <image class='BottomItemImage' src='/images/people.png'></image>
-            <text class='BottomItemText'>{{item.contact_name}}</text>
+        <text class='ServiceTitleText'>{{item.product_name}}</text>
+        <view class='ProductPriceLayout'>
+          <text class='PriceText1'>狮友价</text>
+          <text class='PriceText2'>¥{{item.product_vip}}</text>
+          <view class='Linecss'>
+            <text class='PriceText3'>¥{{item.product_original}}</text>
           </view>
-          <image class='BottomItemImage' src='/images/place.png'></image>
-          <text class='BottomItem2Text'>{{item.address_name}}</text>
-        </view>
-      </view>
-      <!--显示审核状态-->
-      <view class='ServiceCheckLayout'>
-        <view wx:if="{{item.service_state=='wait_for_audit'}}">
-          <image class='ServiceCheckStatus' src="/images/checking.png"></image>
-        </view>
-        <view wx:elif="{{item.service_state=='audit_success'}}">
-          <image class='ServiceCheckStatus' src="/images/checkok.png"></image>
-        </view>
-        <view wx:else>
-          <image class='ServiceCheckStatus' src="/images/checkfail.png"></image>
         </view>
       </view>
     </view>
   </block>
   <!--底部发布新业务-->
-  <view class='BottomNewServiceLayout' bindtap='点击发布新业务'><text class='NewServiceText'>发布新业务</text></view>
+  <view class='BottomNewServiceLayout' bindtap='点击发布产品'><text class='NewServiceText'>发布产品</text></view>
 </view>
 

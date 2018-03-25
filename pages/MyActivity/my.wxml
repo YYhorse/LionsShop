@@ -22,6 +22,7 @@
   <view class='SingerLayout' bindtap='点击店铺管理'>
     <text class='SingerText'>店铺管理</text>
     <view class='SingerEndLayout'>
+      <text class="{{ShopStatue=='wait_for_audit'?'SingerEndTxt':'HideText'}}">待审核</text>
       <image class='SingerRightImage' src='/images/right.png'></image>
     </view>
   </view>

@@ -20,17 +20,17 @@
     <image class='SingerRightImage' src='/images/right.png'></image>
   </view>
 </view>
-<!--显示开始时间-->
+<!--显示活动日期-->
 <view class='SingerLayout'>
   <image class='LogoImage' src='/images/time.png'></image>
-  <text class='LogoTitleText'>开始时间:</text>
+  <text class='LogoTitleText'>活动日期:</text>
   <text class='LogoContextText'>{{activityList.start_at}}</text>
 </view>
-<!--显示截止时间-->
+<!--显示活动时间-->
 <view class='SingerLayout'>
   <image class='LogoImage' src='/images/time.png'></image>
-  <text class='LogoTitleText'>截止时间:</text>
-  <text class='LogoContextText'>{{activityList.end_at}}</text>
+  <text class='LogoTitleText'>活动时间:</text>
+  <text class='LogoContextText'>{{activityList.time_interval}}</text>
 </view>
 <!--显示联系人-->
 <view class='SingerLayout'  bindtap='点击拨打电话'>

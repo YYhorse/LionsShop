@@ -98,6 +98,16 @@ Page({
       }
     })  
   },
+  浏览图片:function(e){
+      var current = e.target.dataset.src;
+      console.log(current);
+      var piclist =[];
+      piclist.push(current)
+      wx.previewImage({
+        current: current, // 当前显示图片的http链接  
+        urls: piclist // 需要预览的图片http链接列表  
+      })
+  },
   onShow: function () {
     if (getApp().FlashActivityState == true) {
       console.log('成功发布活动后刷新')

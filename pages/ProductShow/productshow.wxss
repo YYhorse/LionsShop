@@ -1,7 +1,17 @@
 .LineLayout{
+  display: flex;
   width: 100%;
-  height: 8rpx;
-  background-color: #F0F0F0;
+  height: 10rpx;
+  background-color: #F3F5F7;
+}
+.swiper {
+  height: 300rpx;
+  width: 100%;
+  display: flex;
+}
+.swiper image {
+  height: 100%;
+  width: 100%;
 }
 .InputTitleLayout{
   display: flex;
@@ -37,31 +47,11 @@
   font-size: 16px;
   color: gray;
   margin-left: 60rpx;
-  margin-top: 30rpx;
-  margin-bottom: 20rpx;
+  margin-top: 40rpx;
 }
-.PhotoShowLayout{
-  display: flex;
-  width: 100%;
-  height: 200rpx;
-  flex-direction: row;
-  padding: 5px 0;
-  border-bottom: 1px solid #ededed;
-  align-items: center;
+.HideLayout{
+  display: none;
 }
-.TakePhotoImage{
-  display: flex;
-  width: 70rpx;
-  height: 70rpx;
-  margin-left: 50rpx;
-}
-.ShowPhotoImage{
-  display: flex;
-  width: 20%;
-  height: 50%;
-  margin: 10rpx;
-}
-
 .BottomNewServiceLayout{
   display:flex;
   position: fixed;
@@ -70,7 +60,7 @@
   z-index: 50;
   width: 100%;
   height: 48px;
-  background-color: #E51C23;
+  background-color: green;
   flex-direction:row;
   align-items: center;
   justify-content:center;

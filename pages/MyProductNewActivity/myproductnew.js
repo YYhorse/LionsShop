@@ -1,53 +1,32 @@
-//获取应用实例
-const app = getApp()
+
 Page({
   data: {
-    TitleText:'',
-    Dates:'',
-    BeginTime:'',
-    EndTime:'',
-    PlaceClass:'',
-    DetailText:'无',
-    image_photo:[],
-    PicSelect:0,
-    Activity_id:'',
+    productName:null,
+    productDetail: null,
+    productOriginal: null,
+    productVip: null,
+    image_photo: [],
+    product_id:null,
+    PicSelect: 0,
   },
   onLoad: function (options) {
-    wx.setNavigationBarTitle({ title: '发布活动' });
+    wx.setNavigationBarTitle({ title: '发布产品' });
   },
-  输入标题: function (e) {
-    this.setData({ TitleText: e.detail.value })
+  输入产品名称:function(e){
+    this.setData({ productName: e.detail.value })
   },
-  输入详情: function (e) {
-    this.setData({ DetailText: e.detail.value })
+  输入产品详情:function (e) {
+    this.setData({ productDetail: e.detail.value })
   },
-  监听日期变化:function(e){
-    this.setData({
-      Dates: e.detail.value
-    })
+  输入产品原价: function (e) {
+    this.setData({ productOriginal: e.detail.value })
   },
-  监听开始时间变化:function(e){
-    this.setData({
-      BeginTime: e.detail.value
-    })
-  },
-  监听结束时间变化: function (e) {
-    this.setData({
-      EndTime: e.detail.value
-    })
-  },
-  点击选择地点:function(e){
-    console.log("点击选择地点")
-    var that = this;
-    wx.chooseLocation({
-      success: function(res) {
-        that.setData({ PlaceClass: res })
-      },
-    })
+  输入产品会员价: function (e) {
+    this.setData({ productVip: e.detail.value })
   },
   拍摄照片: function (e) {
     var that = this
-    if (this.data.image_photo.length<3){
+    if (this.data.image_photo.length < 3) {
       wx.chooseImage({
         count: 3, // 默认9  
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
@@ -56,67 +35,66 @@ Page({
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
           var tempFilePaths = res.tempFilePaths;
           that.data.image_photo = that.data.image_photo.concat(tempFilePaths);
-          that.setData({  image_photo: that.data.image_photo  })
+          that.setData({ image_photo: that.data.image_photo })
         }
       })
     }
-    else{
+    else {
       wx.showToast({
         title: '最多上传3张图片',
         icon: 'loading',
         duration: 1000
-      });  
+      });
     }
   },
   点击发布:function(e){
-    // console.log(this.data.PlaceClass);
-    console.log(this.data.TitleText + "|" + this.data.DetailText + this.data.PlaceClass.address + "|" + this.data.Dates + "|" + this.data.BeginTime + "|" + this.data.EndTime);
-    if (this.data.TitleText != '' && this.data.PlaceClass != '' && this.data.Dates!=''
-      && this.data.BeginTime != '' && this.data.EndTime != ''){
-      if (this.data.image_photo == null)
+    console.log(this.data.productName + "|" + this.data.productDetail + "|" + this.data.productOriginal + "|" + this.data.productVip);
+    console.log(this.data.image_photo);
+    if (this.data.productName != null && this.data.productDetail != null 
+      && this.data.productOriginal != null && this.data.productVip != null) {
+      if (this.data.image_photo.length==0)
         wx.showToast({ title: '请上传一张图片', });
-      else{
-        var that = this;
+      else {
         wx.showLoading({ title: '提交中' });
         this.UpdateFirstPic();
       }
     }
     else
       wx.showToast({ title: '信息不能为空', });
+
   },
-  UpdateFirstPic:function(){
+  UpdateFirstPic: function () {
     var that = this;
     wx.uploadFile({
-      url: getApp().globalData.HomeUrl + getApp().globalData.PushActivityUrl,
+      url: getApp().globalData.HomeUrl + getApp().globalData.CreatProductUrl,
       filePath: that.data.image_photo[that.data.PicSelect],
-      name: 'activity_images',
+      name: 'product_images',
       formData: {
         'user_id': getApp().globalData.user_id,
-        'title': that.data.TitleText,
-        'start_at': that.data.Dates,
-        'time_interval': that.data.BeginTime + '-' + that.data.EndTime,
-        'address_name': that.data.PlaceClass.name,
-        'address_detail': that.data.PlaceClass.address,
-        'latitude': that.data.PlaceClass.latitude,
-        'longitude': that.data.PlaceClass.longitude,
-        'detail': that.data.DetailText,
+        'store_code': getApp().globalData.store_code,
+        'product_name': that.data.productName,
+        'product_detail': that.data.productDetail,
+        'product_original': that.data.productOriginal,
+        'product_vip': that.data.productVip,
       },
       success: function (Ares) {
         console.log(Ares.data);
-        var json = JSON.parse(Ares.data); 
+        var json = JSON.parse(Ares.data);
         if (json.status_code == 200) {
-          that.data.Activity_id = json.activity_id;
+          that.data.product_id = json.product_id;
           that.data.PicSelect = that.data.PicSelect + 1;
           console.log("上传第" + that.data.PicSelect + "张成功!")
           if (that.data.PicSelect == that.data.image_photo.length) {
             wx.hideLoading();
             console.log('上传完成');
-            getApp().FlashActivityState = true;
             wx.showModal({
               title: '成功',
               content: '提交成功!',
               success: function (res) {
-                if (res.confirm || res.cancel)  wx.navigateBack();
+                if (res.confirm || res.cancel) {
+                  getApp().globalData.FlashProductState = true;
+                  wx.navigateBack();
+                }
               }
             })
           }
@@ -129,38 +107,46 @@ Page({
             title: '错误提示',
             content: '接口返回错误=' + Ares.data.state_code,
             success: function (res) {
-              if (res.confirm || res.cancel)
+              if (res.confirm || res.cancel) {
+                getApp().globalData.FlashProductState = true;
                 wx.navigateBack();
+              }
             }
           })
         }
       },
-      fail: function () { wx.showToast({ title: '获取失败,服务器异常', }) }
-    })    
+      fail: function () {
+        wx.showModal({
+          title: '错误提示',
+          content: '服务器返回错误',
+        }) 
+      }
+    })
   },
-  UpdateOtherPic:function(){
+  UpdateOtherPic: function () {
     var that = this;
     wx.uploadFile({
-      url: getApp().globalData.HomeUrl + getApp().globalData.PushActivityUrl,
+      url: getApp().globalData.HomeUrl + getApp().globalData.UpdataProductImage,
       filePath: that.data.image_photo[that.data.PicSelect],
-      name: 'activity_images',
-      formData: { 'activity_id': that.data.Activity_id },
+      name: 'product_images',
+      formData: { 'user_id': getApp().globalData.user_id, 'store_code': getApp().globalData.store_code, 'product_id': that.data.product_id },
       success: function (Ares) {
         console.log(Ares.data);
-        var json = JSON.parse(Ares.data); 
+        var json = JSON.parse(Ares.data);
         that.data.PicSelect = that.data.PicSelect + 1;
         if (json.status_code == 200) {
           console.log("上传第" + that.data.PicSelect + "张成功!")
           if (that.data.PicSelect == that.data.image_photo.length) {
             wx.hideLoading();
             console.log('上传完成');
-            getApp().FlashActivityState = true;
             wx.showModal({
               title: '成功',
               content: '提交成功!',
               success: function (res) {
-                if (res.confirm || res.cancel)
+                if (res.confirm || res.cancel) {
+                  getApp().globalData.FlashProductState = true;
                   wx.navigateBack();
+                }
               }
             })
           }
@@ -180,6 +166,6 @@ Page({
         }
       },
       fail: function () { wx.showToast({ title: '获取失败,服务器异常', }) }
-    })  
+    })
   }
 })
