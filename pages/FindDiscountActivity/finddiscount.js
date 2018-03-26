@@ -22,8 +22,9 @@ Page({
           if (Ares.data.status_code == 200) {
             that.setData({ StoreInfo: Ares.data.stores })
           }
-          else if (Ares.data.status_code == 605)
-            wx.showToast({ title: '无优惠信息' });
+          else if (Ares.data.status_code == 605) {
+            that.setData({ StoreInfo: '' })
+          }
           else
             wx.showToast({ title: '搜索优惠错误,接口返回' + Ares.data.status_code, });
         },

@@ -41,6 +41,9 @@
           </view>
        </view>
      </block>
-     <text class="{{StoresList.length>0?'HideShow':'NoStoreText'}}">无产品</text>
+     <view class="{{StoresList.length>0?'HideShow':'ShowNoProductText'}}">
+        <image class='NoProductImage' src='/images/nofind.png'></image>
+        <text class='NoStoreText'>没有搜索结果</text>
+     </view>
   </scroll-view>
 </view>

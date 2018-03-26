@@ -19,5 +19,8 @@
         </view>
       </view>
     </view>
-  </block> 
-
+</block> 
+<view class="{{(StoreInfo.length>0||StoreInfo==null)?'HideShow':'ShowNoProductText'}}">
+  <image class='NoProductImage' src='/images/nofind.png'></image>
+  <text class='NoStoreText'>没有优惠店铺</text>
+</view>

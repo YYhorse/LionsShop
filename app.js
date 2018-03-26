@@ -75,6 +75,7 @@ App({
     LoginUrl:'/api/v1/users/login',
     PushUserUrl:'/api/v1/enter_applies',
     GetHomeUrl:'/api/v1/users/home_page',
+    FlashUserUrl:'/api/v1/users/refresh_information',   //刷新用户店铺信息 【我的】
     FindPeopleUrl:'/api/v1/users/find_friend',          //寻找狮友
     FindProductUrl: '/api/v1/stores/find_product',          //找产品
     FindDiscountUrl: '/api/v1/stores/find_discount',          //找优惠

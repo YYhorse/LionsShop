@@ -2,7 +2,7 @@ const app = getApp()
 Page({
   data: {
     FindText:null,
-    ProductList:'',
+    ProductList:null,
 
     // current_page: 0,
     // Max_page: 100,
@@ -36,8 +36,9 @@ Page({
         if (Ares.data.status_code == 200) {
           that.setData({ ProductList: Ares.data.products })
         }
-        else if (Ares.data.status_code == 605)
-          wx.showToast({ title: '未搜索到信息' });
+        else if (Ares.data.status_code == 605) {
+          that.setData({ ProductList: '' })
+        }
         else
           wx.showToast({ title: '搜索信息错误,接口返回' + Ares.data.status_code, });
       },

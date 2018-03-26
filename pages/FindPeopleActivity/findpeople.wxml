@@ -19,4 +19,7 @@
     </view>
   </view>
 </block>
-
+<view class="{{(PeopleList.length>0||PeopleList==null)?'HideShow':'ShowNoProductText'}}">
+  <image class='NoProductImage' src='/images/nofind.png'></image>
+  <text class='NoStoreText'>没有搜索结果</text>
+</view>

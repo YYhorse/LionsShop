@@ -2,7 +2,7 @@ const app = getApp()
 Page({
   data: {
     FindText:null,
-    PeopleList:'',
+    PeopleList:null,
     // current_page: 0,
     // Max_page: 100,
     // PullDownRefreshStatus: false,
@@ -30,8 +30,9 @@ Page({
         if (Ares.data.status_code == 200) {
           that.setData({ PeopleList: Ares.data.friends })
         }
-        else if (Ares.data.status_code == 605)
-          wx.showToast({ title: '未搜索到信息'});
+        else if (Ares.data.status_code == 605){
+          that.setData({ PeopleList: '' })
+        }
         else
           wx.showToast({ title: '搜索信息错误,接口返回' + Ares.data.status_code, });
       },

@@ -23,8 +23,6 @@ Page({
   },
   // 下拉刷新  
   onPullDownRefresh: function () {
-    wx.showNavigationBarLoading();
-    this.data.PullDownRefreshStatus = true;
     this.加载行业下产品();
   },
   输入搜索:function(e){
